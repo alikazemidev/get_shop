@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
+import 'package:get_shop/helpers/theme_helper.dart';
+import 'package:get_shop/modules/auth/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,22 +13,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return GetBuilder<ThemeHelper>(
+      init: ThemeHelper(),
+      builder: (controller) {
+        return GetMaterialApp(
+          theme: controller.defultTheme,
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('fa', 'IR'),
+            Locale('en', 'US'),
+          ],
+          locale: const Locale('fa', 'IR'),
+          debugShowCheckedModeBanner: false,
+          home: const SplashScreen(),
+        );
+      },
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('ali shop'),
-      ),
-    );
-  }
-}
