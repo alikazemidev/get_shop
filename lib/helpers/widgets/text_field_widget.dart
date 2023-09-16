@@ -3,11 +3,23 @@ import 'package:get_shop/constants/color.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TextFieldWidget extends StatefulWidget {
-  const TextFieldWidget(
-      {super.key, required this.hintText, this.icon, this.type});
+  const TextFieldWidget({
+    super.key,
+    required this.hintText,
+    this.icon,
+    this.type,
+    this.inputController,
+    this.validator,
+  });
+
+
   final String hintText;
   final IconData? icon;
   final TextInputType? type;
+  final TextEditingController? inputController;
+  final String? Function(String?)? validator;
+
+
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -19,6 +31,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator:widget.validator,
+      controller: widget.inputController,
       obscureText:
           widget.type == TextInputType.visiblePassword ? _obsText : false,
       keyboardType: widget.type == null ? TextInputType.text : widget.type,
