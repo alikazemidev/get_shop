@@ -5,6 +5,7 @@ import 'package:get_shop/backend/repositories/auth_repostiry.dart';
 class RegisterController extends GetxController {
   final formKey = GlobalKey<FormState>();
   AuthRepository authRepository = AuthRepository();
+  bool isLoading = false;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
@@ -45,14 +46,18 @@ class RegisterController extends GetxController {
     return null;
   }
 
-  void register() {
+  Future<void> register() async {
     if (formKey.currentState!.validate()) {
-      authRepository.register(
+      isLoading = true;
+      update();
+      await authRepository.register(
         name: nameController.text,
         mobile: numberController.text,
         password: passController.text,
         repeatPassword: repeatPassController.text,
       );
+      isLoading = false;
+      update();
     }
   }
 }

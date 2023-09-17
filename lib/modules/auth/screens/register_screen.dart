@@ -83,6 +83,7 @@ class RegisterScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 35),
                           ButtonPrimary(
+                            isLoading: controller.isLoading,
                             text: 'ثبت نام',
                             onPressed: () {
                               controller.register();

@@ -4,7 +4,10 @@ class BaseRepository {
   Dio dio = Dio(
     BaseOptions(
       baseUrl: 'https://shop.hitaldev.ir/api',
-      contentType: "application/json",
+      headers: {
+        "Accept": "application/json",
+      },
+      validateStatus: (status) => status! < 500,
     ),
   );
 }
