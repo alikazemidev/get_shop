@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_shop/backend/repositories/auth_repostiry.dart';
 
 class RegisterController extends GetxController {
   final formKey = GlobalKey<FormState>();
+  AuthRepository authRepository = AuthRepository();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
@@ -45,9 +47,12 @@ class RegisterController extends GetxController {
 
   void register() {
     if (formKey.currentState!.validate()) {
-      print('validate');
-    } else {
-      print('not validate');
+      authRepository.register(
+        name: nameController.text,
+        mobile: numberController.text,
+        password: passController.text,
+        repeatPassword: repeatPassController.text,
+      );
     }
   }
 }
