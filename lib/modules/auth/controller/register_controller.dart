@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/backend/repositories/auth_repostiry.dart';
+import 'package:get_shop/modules/home/screens/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterController extends GetxController {
   final formKey = GlobalKey<FormState>();
   AuthRepository authRepository = AuthRepository();
   bool isLoading = false;
+  SharedPreferences? prefs;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
   TextEditingController passController = TextEditingController();
   TextEditingController repeatPassController = TextEditingController();
+
+  Future<void> initShared() async {
+    prefs = await SharedPreferences.getInstance();
+  }
 
   String? nameValidator(String? value) {
     if (value == null || value.isEmpty) {
@@ -50,14 +57,26 @@ class RegisterController extends GetxController {
     if (formKey.currentState!.validate()) {
       isLoading = true;
       update();
-      await authRepository.register(
+      var res = await authRepository.register(
         name: nameController.text,
         mobile: numberController.text,
         password: passController.text,
         repeatPassword: repeatPassController.text,
       );
+
+      if (res != null) {
+        prefs!.setString('token', res.token!);
+        Get.to(HomeScreen());
+      } else {}
+
       isLoading = false;
       update();
     }
+  }
+
+  @override
+  void onInit() {
+    initShared();
+    super.onInit();
   }
 }

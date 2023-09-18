@@ -69,6 +69,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 15),
                           ButtonPrimary(
+                            isLoading: controller.isLoading,
                             text: 'ورود',
                             onPressed: () {
                               controller.login();
