@@ -7,9 +7,9 @@ class SplashController extends GetxController {
   SharedPreferences? prefs;
 
 // !remove token temprory in windows devlopment
-  Future<void> removeToken() async {
-    await prefs!.remove('token');
-  }
+  // Future<void> removeToken() async {
+  //   await prefs!.remove('token');
+  // }
 
   Future<void> initShared() async {
     prefs = await SharedPreferences.getInstance();
@@ -24,7 +24,7 @@ class SplashController extends GetxController {
 
   @override
   void onInit() {
-    removeToken();
+    // removeToken();
     initShared();
     super.onInit();
   }
