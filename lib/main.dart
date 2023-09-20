@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
       init: ThemeHelper(),
       builder: (controller) {
         return GetMaterialApp(
+          scrollBehavior: AppScrollBehavior(),
           theme: controller.defultTheme,
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
@@ -36,4 +39,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
+}
 

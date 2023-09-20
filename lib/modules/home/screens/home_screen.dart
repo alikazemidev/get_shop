@@ -13,21 +13,91 @@ class HomeScreen extends StatelessWidget {
         init: HomeController(),
         builder: (controller) {
           return Scaffold(
-            // floatingActionButton: Container(
-            //   margin: EdgeInsets.only(bottom: 15),
-            //   child: FloatingActionButton(
-
-            //     backgroundColor: ,
-            //     onPressed: (){},
-            //     child: Icon(Iconsax.home),
-            //   ),
-            // ),
-            // floatingActionButtonLocation:
-            //  FloatingActionButtonLocation.centerFloat,
             body: SafeArea(
               child: Column(
                 children: [
-                  Spacer(),
+                  Container(
+                 padding: EdgeInsets.symmetric(vertical: 15,horizontal: 20),
+                    width: double.infinity,
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 45,
+                          width: 45,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              width: 2,
+                              color: MyColors.dividreColor,
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child:   Icon(
+                          Iconsax.bag_2,
+                          color: Colors.black,
+                          size: 24,
+                        ),
+                        ),
+                        Spacer(),
+                        Image.asset('assets/images/logo_h.png',height: 38,),
+                        Spacer(),
+                        Container(
+                          height: 45,
+                          width: 45,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              width: 2,
+                              color: MyColors.dividreColor,
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Icon(
+                            Iconsax.search_normal,
+                            color: Colors.black,
+                            size: 24,
+                          ),
+                        ),
+                      
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: PageView(
+                      physics: NeverScrollableScrollPhysics(),
+                      // onPageChanged: (value) {
+                      //   controller.changePage(indexPage: value);
+                      // },
+                      controller: controller.pageController,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: Colors.orange,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: Colors.red,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: Colors.blue,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: Colors.yellow,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ),
                   Container(
                     height: 110,
                     child: Stack(
@@ -51,39 +121,82 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal:12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: List.generate(controller.menuItems.length,
-                                  (index) {
-                                return Padding(
-                                  padding: EdgeInsets.only(left :index == 1 ? 60 : 0),
-                                  child: Icon(controller.menuItems[index].icon),
-                                );
-                              }),
+                              children: List.generate(
+                                controller.menuItems.length,
+                                (index) {
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                        left: index == 1 ? 60 : 0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        controller.changePage(
+                                            indexPage: index + 1);
+                                      },
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                              controller.menuItems[index].icon),
+                                          controller.currentIndex == index + 1
+                                              ? Container(
+                                                  margin:
+                                                      EdgeInsets.only(top: 5),
+                                                  width: 20,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
                         Positioned(
                           bottom: 30,
-                          child: Container(
-                            height: 70,
-                            width: 70,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0xff387be3),
-                                  MyColors.primaryColor,
+                          child: GestureDetector(
+                            onTap: () {
+                              controller.changePage(indexPage: 0);
+                            },
+                            child: Container(
+                              height: 70,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0xff387be3),
+                                    MyColors.primaryColor,
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                                boxShadow: [
+                                  controller.currentIndex == 0
+                                      ? BoxShadow(
+                                          color: MyColors.primaryColor,
+                                          offset: Offset(0, 3),
+                                          blurRadius: 15,
+                                        )
+                                      : BoxShadow(),
                                 ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
                               ),
-                            ),
-                            child: Icon(
-                              Iconsax.home_2,
-                              color: Colors.white,
-                              size: 25,
+                              child: Icon(
+                                Iconsax.home_2,
+                                color: Colors.white,
+                                size: 25,
+                              ),
                             ),
                           ),
                         )
