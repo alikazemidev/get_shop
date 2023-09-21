@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/modules/home/controllers/home_controller.dart';
+import 'package:get_shop/modules/home/screens/dashboard_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,8 +17,9 @@ class HomeScreen extends StatelessWidget {
             body: SafeArea(
               child: Column(
                 children: [
+                  //  appbar
                   Container(
-                 padding: EdgeInsets.symmetric(vertical: 15,horizontal: 20),
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                     width: double.infinity,
                     child: Row(
                       children: [
@@ -32,14 +34,17 @@ class HomeScreen extends StatelessWidget {
                             ),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child:   Icon(
-                          Iconsax.bag_2,
-                          color: Colors.black,
-                          size: 24,
-                        ),
+                          child: Icon(
+                            Iconsax.bag_2,
+                            color: Colors.black,
+                            size: 24,
+                          ),
                         ),
                         Spacer(),
-                        Image.asset('assets/images/logo_h.png',height: 38,),
+                        Image.asset(
+                          'assets/images/logo_h.png',
+                          height: 38,
+                        ),
                         Spacer(),
                         Container(
                           height: 45,
@@ -58,10 +63,10 @@ class HomeScreen extends StatelessWidget {
                             size: 24,
                           ),
                         ),
-                      
                       ],
                     ),
                   ),
+                  //  pageviews
                   Expanded(
                     child: PageView(
                       physics: NeverScrollableScrollPhysics(),
@@ -70,11 +75,7 @@ class HomeScreen extends StatelessWidget {
                       // },
                       controller: controller.pageController,
                       children: [
-                        Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          color: Colors.orange,
-                        ),
+                        DashboardScreen(),
                         Container(
                           width: double.infinity,
                           height: double.infinity,
@@ -98,6 +99,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  //  bottom navbar
                   Container(
                     height: 110,
                     child: Stack(
