@@ -10,12 +10,10 @@ class DashboardScreen extends StatelessWidget {
       children: [
         SliderImage(
           imageUrls: [
-            'https://via.placeholder.com/600/1ee8a4',
-            'https://via.placeholder.com/600/f9cee5',
-            "https://via.placeholder.com/600/45601a",
-            "https://via.placeholder.com/600/e2223e",
+            'https://dl.hitaldev.com/ecommerce/sliders/429306.jpg',
+            'https://dl.hitaldev.com/ecommerce/sliders/429219.jpg',
+            'https://dl.hitaldev.com/ecommerce/sliders/470497.jpg',
           ],
-          
         )
       ],
     );

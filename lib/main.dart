@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
+//? page view drag work on desktop and web
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
