@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_shop/constants/color.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 
 class SliderImage extends StatefulWidget {
   final List<String> imageUrls;
@@ -31,14 +31,14 @@ class _SliderImageState extends State<SliderImage> {
             },
             height: 140.0,
             viewportFraction: 1,
-            autoPlay: true,
+            // autoPlay: true,
             autoPlayInterval: Duration(
               seconds: 3,
             ),
           ),
           itemBuilder: (context, index, realIndex) {
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: 15),
+       
               width: double.infinity,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
