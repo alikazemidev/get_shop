@@ -43,7 +43,7 @@ class ProductsListWidget extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 200,
+          height: 210,
           // width: 118,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -81,10 +81,13 @@ class ProductsListWidget extends StatelessWidget {
                             ),
                           ),
                           Container(
+                            // padding: EdgeInsets.symmetric(vertical: 2),
                             margin: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 5),
-                            height: 15,
-                            width: 25,
+                              horizontal: 8,
+                              vertical: 5,
+                            ),
+                            height: 18,
+                            width: 30,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
                               color: Colors.red,
@@ -93,7 +96,7 @@ class ProductsListWidget extends StatelessWidget {
                               child: Text(
                                 '10%',
                                 style: TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),

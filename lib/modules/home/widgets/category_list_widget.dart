@@ -1,10 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/main.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../backend/models/category.dart';
+
 class CategoryListWidget extends StatelessWidget {
-  const CategoryListWidget({super.key});
+  const CategoryListWidget({super.key, required this.categories});
+  final List<Category> categories;
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +75,12 @@ class CategoryListWidget extends StatelessWidget {
                         ],
                       ),
                       child: Image.network(
-                        'https://dl.hitaldev.com/ecommerce/category_images/400967.png',
+                        categories[index].image ?? '',
                       ),
                     ),
                     SizedBox(height: 5),
                     Text(
-                      'لبنیات',
+                      categories[index].title ?? '',
                       style: TextStyle(),
                     )
                   ],
