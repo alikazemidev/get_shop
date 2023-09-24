@@ -33,9 +33,19 @@ class DashboardScreen extends StatelessWidget {
                               controller.dashboardResponse!.categories ?? [],
                         ),
                         SizedBox(height: 15),
-                        ProductsListWidget(title: 'تخفیف های شگفت انگیز'),
+                        ProductsListWidget(
+                          title: 'تخفیف های شگفت انگیز',
+                          products: controller
+                                  .dashboardResponse!.discountedProducts ??
+                              [],
+                        ),
                         SizedBox(height: 15),
-                        ProductsListWidget(title: 'آخرین محصولات'),
+                        ProductsListWidget(
+                          title: 'آخرین محصولات',
+                          products:
+                              controller.dashboardResponse!.latestProducts ??
+                                  [],
+                        ),
                       ],
                     ),
                   ),

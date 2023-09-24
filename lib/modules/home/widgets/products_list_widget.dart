@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get_shop/backend/models/product.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ProductsListWidget extends StatelessWidget {
   final String title;
-  const ProductsListWidget({super.key, required this.title});
+  final List<Product> products;
+  const ProductsListWidget({
+    super.key,
+    required this.title,
+    required this.products,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +53,7 @@ class ProductsListWidget extends StatelessWidget {
           // width: 118,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
+            itemCount: products.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.only(left: 15.0, top: 12),
@@ -60,7 +66,7 @@ class ProductsListWidget extends StatelessWidget {
                         children: [
                           Container(
                             padding: EdgeInsets.all(18),
-                            // width: 118,
+                            width: 118,
                             height: 130,
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -77,39 +83,41 @@ class ProductsListWidget extends StatelessWidget {
                               ],
                             ),
                             child: Image.network(
-                              'https://dl.hitaldev.com/ecommerce/category_images/400967.png',
+                              products[index].image ?? '',
                             ),
                           ),
-                          Container(
-                            // padding: EdgeInsets.symmetric(vertical: 2),
-                            margin: EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 5,
-                            ),
-                            height: 18,
-                            width: 30,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: Colors.red,
-                            ),
-                            child: Center(
-                              child: Text(
-                                '10%',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
+                          products[index].discountPercent != 0
+                              ? Container(
+                                  // padding: EdgeInsets.symmetric(vertical: 2),
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 5,
+                                  ),
+                                  height: 18,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: Colors.red,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      '${products[index].discountPercent.toString()}%' ,
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : SizedBox(),
                         ],
                       ),
                       SizedBox(height: 5),
                       Row(
                         children: [
                           Text(
-                            '11,000',
+                            products[index].price.toString(),
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -123,19 +131,22 @@ class ProductsListWidget extends StatelessWidget {
                             ),
                           ),
                           Spacer(),
-                          Text(
-                            '12,000',
-                            style: TextStyle(
-                              decoration: TextDecoration.lineThrough,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: MyColors.darkGreyColor,
+                          Visibility(
+                            visible: products[index].discountPercent != 0,
+                            child: Text(
+                              products[index].realPrice.toString(),
+                              style: TextStyle(
+                                decoration: TextDecoration.lineThrough,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: MyColors.darkGreyColor,
+                              ),
                             ),
                           ),
                         ],
                       ),
                       Text(
-                        'شیر بطری کم چرب  ۱ لیتری',
+                        products[index].title ?? '',
                         overflow: TextOverflow.ellipsis,
                       )
                     ],

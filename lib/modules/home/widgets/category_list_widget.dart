@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:get_shop/constants/color.dart';
-import 'package:get_shop/main.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../backend/models/category.dart';
@@ -50,7 +48,7 @@ class CategoryListWidget extends StatelessWidget {
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
+            itemCount: categories.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.only(left: 15.0, top: 12),
