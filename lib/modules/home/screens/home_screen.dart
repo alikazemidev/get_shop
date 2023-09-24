@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/modules/home/controllers/home_controller.dart';
+import 'package:get_shop/modules/home/screens/catrgories_screen.dart';
 import 'package:get_shop/modules/home/screens/dashboard_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -76,26 +77,10 @@ class HomeScreen extends StatelessWidget {
                       controller: controller.pageController,
                       children: [
                         DashboardScreen(),
-                        Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          color: Colors.red,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          color: Colors.blue,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          color: Colors.yellow,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          color: Colors.black,
-                        ),
+                        CategoriesScreen(),
+                        Container(color: Colors.blue),
+                        Container(color: Colors.yellow),
+                        Container(color: Colors.black),
                       ],
                     ),
                   ),
