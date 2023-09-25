@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_shop/backend/models/product.dart';
 import 'package:get_shop/constants/color.dart';
+import 'package:get_shop/modules/products/screens/products_list_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ProductsListWidget extends StatelessWidget {
@@ -38,7 +40,9 @@ class ProductsListWidget extends StatelessWidget {
                     fontSize: 14,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(ProductsListScreen());
+                },
                 icon: Icon(
                   Iconsax.arrow_left,
                   size: 24,
@@ -101,7 +105,7 @@ class ProductsListWidget extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      '${products[index].discountPercent.toString()}%' ,
+                                      '${products[index].discountPercent.toString()}%',
                                       style: TextStyle(
                                         fontSize: 10,
                                         color: Colors.white,

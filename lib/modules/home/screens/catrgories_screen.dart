@@ -77,6 +77,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                                 controller.categoriesResponse!
                                     .categoriesData![index].title
                                     .toString(),
+                                    overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 12),
                               ),
