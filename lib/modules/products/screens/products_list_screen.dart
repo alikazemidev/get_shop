@@ -1,12 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
 import 'package:get_shop/modules/products/controllers/products_list_controller.dart';
 import 'package:iconsax/iconsax.dart';
+import 'dart:developer' as dev;
 
 class ProductsListScreen extends StatelessWidget {
   ProductsListScreen({super.key});
+
   final List<String> popTitle = [
     'جدیدترین ها',
     'بیشترین تخفیف',
@@ -49,14 +53,22 @@ class ProductsListScreen extends StatelessWidget {
                               ),
                               child: Center(
                                 child: TextFormField(
+                                  controller: controller.inputController,
+                                  onChanged: (value) => controller.getProducts(
+                                    searchText: value,
+                                   ),
                                   decoration: InputDecoration(
-                                      suffixIcon: Icon(Iconsax.search_normal),
-                                      hintText:
-                                          'نام محصول مورد نظر را وارد کنید',
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 5),
-                                      hintStyle: TextStyle(fontSize: 14)),
+                                    suffixIcon: Icon(Iconsax.search_normal),
+                                    hintText: 'نام محصول مورد نظر را وارد کنید',
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 15,
+                                      vertical: 5,
+                                    ),
+                                    hintStyle: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

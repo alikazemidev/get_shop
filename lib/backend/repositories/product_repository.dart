@@ -15,10 +15,13 @@ class ProductRepository extends BaseRepository {
     return CategoriesResponse.fromJson(res.data);
   }
 
-  Future<ProductsResponse> fillterProducts({int? categoryId}) async {
+  Future<ProductsResponse> fillterProducts({int? categoryId,String? searchText}) async {
     Map<String, dynamic> params = {};
     if (categoryId != null) {
       params["category_id"] = categoryId.toString();
+    }
+    if(searchText != null){
+      params['keyword'] = searchText;
     }
     var res = await dio.get('/products', queryParameters: params);
     return ProductsResponse.fromJson(res.data);
