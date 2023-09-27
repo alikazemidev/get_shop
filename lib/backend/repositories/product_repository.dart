@@ -1,6 +1,7 @@
 import 'package:get_shop/backend/repositories/base_repository.dart';
 import 'package:get_shop/backend/response/categories_response.dart';
 import 'package:get_shop/backend/response/dashboard_response.dart';
+import 'package:get_shop/backend/response/products_response.dart';
 
 class ProductRepository extends BaseRepository {
   Future<DashboardResponse> getDashboard() async {
@@ -12,5 +13,14 @@ class ProductRepository extends BaseRepository {
     var res = await dio.get('/categories');
     print(res.data);
     return CategoriesResponse.fromJson(res.data);
+  }
+
+  Future<ProductsResponse> fillterProducts({int? categoryId}) async {
+    Map<String, dynamic> params = {};
+    if (categoryId != null) {
+      params["category_id"] = categoryId.toString();
+    }
+    var res = await dio.get('/products', queryParameters: params);
+    return ProductsResponse.fromJson(res.data);
   }
 }
