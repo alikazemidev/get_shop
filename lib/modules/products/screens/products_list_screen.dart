@@ -56,7 +56,7 @@ class ProductsListScreen extends StatelessWidget {
                                   controller: controller.inputController,
                                   onChanged: (value) => controller.getProducts(
                                     searchText: value,
-                                   ),
+                                  ),
                                   decoration: InputDecoration(
                                     suffixIcon: Icon(Iconsax.search_normal),
                                     hintText: 'نام محصول مورد نظر را وارد کنید',
@@ -74,7 +74,10 @@ class ProductsListScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: 10),
-                          PopupMenuButton(
+                          PopupMenuButton<Sort>(
+                            onSelected: (value) {
+                              controller.sort(value);
+                            },
                             position: PopupMenuPosition.under,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -102,34 +105,112 @@ class ProductsListScreen extends StatelessWidget {
                               ),
                             ),
                             itemBuilder: (context) {
-                              return List.generate(popTitle.length, (index) {
-                                return PopupMenuItem(
+                              return [
+                                PopupMenuItem(
+                                  value: Sort(
+                                    orderType: 'DESC',
+                                    orderColumn: 'id',
+                                  ),
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
                                       horizontal: 20,
                                       vertical: 10,
                                     ),
-                                    decoration: index != popTitle.length - 1
-                                        ? BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                color: MyColors.dividreColor,
-                                                width: 2,
-                                              ),
-                                            ),
-                                          )
-                                        : null,
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        bottom: BorderSide(
+                                          color: MyColors.dividreColor,
+                                          width: 2,
+                                        ),
+                                      ),
+                                    ),
                                     child: Center(
                                       child: Text(
-                                        popTitle[index],
+                                        popTitle[0],
                                         style: TextStyle(
                                           fontSize: 14,
                                         ),
                                       ),
                                     ),
                                   ),
-                                );
-                              });
+                                ),
+                                PopupMenuItem(
+                                  value: Sort(
+                                    orderColumn: 'discount',
+                                    orderType: 'DESC',
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 10,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        bottom: BorderSide(
+                                          color: MyColors.dividreColor,
+                                          width: 2,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        popTitle[1],
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  value: Sort(
+                                    orderColumn: 'price',
+                                    orderType: 'ASC',
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 10,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        bottom: BorderSide(
+                                          color: MyColors.dividreColor,
+                                          width: 2,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        popTitle[2],
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  value: Sort(
+                                    orderColumn: 'price',
+                                    orderType: 'DESC',
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 10,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        popTitle[3],
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ];
                             },
                           )
                         ],
