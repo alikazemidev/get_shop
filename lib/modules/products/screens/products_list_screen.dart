@@ -267,11 +267,20 @@ class ProductsListScreen extends StatelessWidget {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    // Image.asset(
-                                    //   'assets/images/empty_list.jpg',
-                                    //   height: 90,
-                                    // ),
-                                    Text('ali'),
+                                    Icon(
+                                      Iconsax.message_question,
+                                      size: 100,
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text(
+                                      'محصولی  در این دسته بندی موجود نیست',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               )
