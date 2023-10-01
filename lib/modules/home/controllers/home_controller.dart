@@ -4,9 +4,7 @@ import 'package:iconsax/iconsax.dart';
 
 class HomeController extends GetxController {
   int currentIndex = 0;
-  PageController pageController = PageController(
-    
-  );
+  PageController pageController = PageController();
 
   List<MenuItem> menuItems = [
     MenuItem(icon: Iconsax.element_3),
@@ -21,7 +19,7 @@ class HomeController extends GetxController {
       duration: Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
-    
+
     currentIndex = indexPage;
     update();
   }

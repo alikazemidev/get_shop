@@ -4,6 +4,7 @@ import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/modules/home/controllers/home_controller.dart';
 import 'package:get_shop/modules/home/screens/catrgories_screen.dart';
 import 'package:get_shop/modules/home/screens/dashboard_screen.dart';
+import 'package:get_shop/modules/products/screens/products_list_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -48,6 +49,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Spacer(),
                         GestureDetector(
+                          onTap: () => Get.to(ProductsListScreen()),
                           child: Container(
                             height: 45,
                             width: 45,
