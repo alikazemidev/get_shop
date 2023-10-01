@@ -5,8 +5,11 @@ import 'package:get_shop/backend/models/product.dart';
 import 'package:get_shop/backend/repositories/product_repository.dart';
 
 class ProductsListController extends GetxController {
-  String? orderColumn;
-  String? orderType;
+  final int? categoryId;
+  final Sort? defaultSort;
+  ProductsListController({this.categoryId, this.defaultSort});
+
+  Sort? selectedSort;
   List<Category>? categories;
   List<Product>? products;
   TextEditingController inputController = TextEditingController();
@@ -23,10 +26,11 @@ class ProductsListController extends GetxController {
     var res = await productRepository.fillterProducts(
       categoryId: selectedCategoryId,
       searchText: searchText,
-      orderColumn: orderColumn,
-      orderType: orderType,
+      orderColumn: selectedSort?.orderColumn,
+      orderType: selectedSort?.orderType,
     );
     products = res.productsData;
+
     update();
   }
 
@@ -35,8 +39,7 @@ class ProductsListController extends GetxController {
   }
 
   void sort(Sort sort) {
-    orderType = sort.orderType;
-    orderColumn = sort.orderColumn;
+    selectedSort = sort;
     update();
     getProducts();
   }
@@ -49,15 +52,13 @@ class ProductsListController extends GetxController {
 
   @override
   void onInit() {
+    selectedCategoryId = categoryId;
+    selectedSort = defaultSort;
     getCategories();
     getProducts();
     super.onInit();
   }
 }
-
-
-
-
 
 class Sort {
   final String? orderType;

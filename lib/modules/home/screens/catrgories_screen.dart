@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/modules/home/controllers/categories_controller.dart';
+import 'package:get_shop/modules/products/screens/products_list_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -46,42 +47,51 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                         itemCount: controller
                             .categoriesResponse!.categoriesData!.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(12),
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                    color: MyColors.dividreColor,
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xff14489e).withOpacity(.15),
-                                      blurRadius: 3,
-                                      offset: Offset(0, 1),
+                          return GestureDetector(
+                            onTap: () => Get.to(
+                              ProductsListScreen(
+                                categoryId: controller.categoriesResponse
+                                    !.categoriesData![index].id,
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(12),
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(
+                                      color: MyColors.dividreColor,
                                     ),
-                                  ],
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color:
+                                            Color(0xff14489e).withOpacity(.15),
+                                        blurRadius: 3,
+                                        offset: Offset(0, 1),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Image.network(
+                                    controller.categoriesResponse!
+                                            .categoriesData![index].image ??
+                                        '',
+                                  ),
                                 ),
-                                child: Image.network(
+                                SizedBox(height: 5),
+                                Text(
                                   controller.categoriesResponse!
-                                          .categoriesData![index].image ??
-                                      '',
+                                      .categoriesData![index].title
+                                      .toString(),
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 12),
                                 ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                controller.categoriesResponse!
-                                    .categoriesData![index].title
-                                    .toString(),
-                                    overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
+                              ],
+                            ),
                           );
                         },
                       ),

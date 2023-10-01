@@ -47,21 +47,23 @@ class HomeScreen extends StatelessWidget {
                           height: 38,
                         ),
                         Spacer(),
-                        Container(
-                          height: 45,
-                          width: 45,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              width: 2,
-                              color: MyColors.dividreColor,
+                        GestureDetector(
+                          child: Container(
+                            height: 45,
+                            width: 45,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                width: 2,
+                                color: MyColors.dividreColor,
+                              ),
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Icon(
-                            Iconsax.search_normal,
-                            color: Colors.black,
-                            size: 24,
+                            child: Icon(
+                              Iconsax.search_normal,
+                              color: Colors.black,
+                              size: 24,
+                            ),
                           ),
                         ),
                       ],

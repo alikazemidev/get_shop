@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
+import 'package:get_shop/modules/home/controllers/home_controller.dart';
+import 'package:get_shop/modules/products/screens/products_list_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../backend/models/category.dart';
@@ -34,7 +37,9 @@ class CategoryListWidget extends StatelessWidget {
                     fontSize: 14,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.find<HomeController>().changePage(indexPage: 1);
+                },
                 icon: Icon(
                   Iconsax.arrow_left,
                   size: 24,
@@ -52,36 +57,43 @@ class CategoryListWidget extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.only(left: 15.0, top: 12),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(16),
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: MyColors.dividreColor,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0xff14489e).withOpacity(.15),
-                            blurRadius: 3,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Image.network(
-                        categories[index].image ?? '',
-                      ),
+                child: GestureDetector(
+                  onTap: () => Get.to(
+                    ProductsListScreen(
+                      categoryId: categories[index].id,
                     ),
-                    SizedBox(height: 5),
-                    Text(
-                      categories[index].title ?? '',
-                      style: TextStyle(),
-                    )
-                  ],
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: MyColors.dividreColor,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xff14489e).withOpacity(.15),
+                              blurRadius: 3,
+                              offset: Offset(0, 1),
+                            ),
+                          ],
+                        ),
+                        child: Image.network(
+                          categories[index].image ?? '',
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        categories[index].title ?? '',
+                        style: TextStyle(),
+                      )
+                    ],
+                  ),
                 ),
               );
             },

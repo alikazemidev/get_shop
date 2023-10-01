@@ -11,7 +11,6 @@ class ProductRepository extends BaseRepository {
 
   Future<CategoriesResponse> getCategories() async {
     var res = await dio.get('/categories');
-    print(res.data);
     return CategoriesResponse.fromJson(res.data);
   }
 

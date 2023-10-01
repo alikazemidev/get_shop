@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 import 'package:get_shop/modules/home/controllers/dashboard_controller.dart';
 import 'package:get_shop/modules/home/widgets/category_list_widget.dart';
 import 'package:get_shop/modules/home/widgets/products_list_widget.dart';
 import 'package:get_shop/modules/home/widgets/slider_image.dart';
+import 'package:get_shop/modules/products/controllers/products_list_controller.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -44,6 +45,10 @@ class _DashboardScreenState extends State<DashboardScreen>
                         products:
                             controller.dashboardResponse!.discountedProducts ??
                                 [],
+                        sort: Sort(
+                          orderColumn: 'discount',
+                          orderType: 'DESC',
+                        ),
                       ),
                       SizedBox(height: 15),
                       ProductsListWidget(

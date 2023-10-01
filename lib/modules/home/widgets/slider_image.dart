@@ -1,8 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get_shop/constants/color.dart';
-
 
 class SliderImage extends StatefulWidget {
   final List<String> imageUrls;
@@ -38,7 +36,6 @@ class _SliderImageState extends State<SliderImage> {
           ),
           itemBuilder: (context, index, realIndex) {
             return Container(
-       
               width: double.infinity,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),

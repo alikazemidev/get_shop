@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/backend/models/product.dart';
 import 'package:get_shop/constants/color.dart';
+import 'package:get_shop/modules/products/controllers/products_list_controller.dart';
 import 'package:get_shop/modules/products/screens/products_list_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ProductsListWidget extends StatelessWidget {
   final String title;
   final List<Product> products;
+  final Sort? sort;
   const ProductsListWidget({
     super.key,
     required this.title,
     required this.products,
+    this.sort,
   });
 
   @override
@@ -41,7 +44,9 @@ class ProductsListWidget extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Get.to(ProductsListScreen());
+                  Get.to(
+                    ProductsListScreen(sort: sort),
+                  );
                 },
                 icon: Icon(
                   Iconsax.arrow_left,
