@@ -3,13 +3,15 @@ import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:iconsax/iconsax.dart';
 
-PreferredSizeWidget getAppbar(String title) {
+PreferredSizeWidget getAppbar({String? title, Widget? widget}) {
   return AppBar(
     backgroundColor: Colors.white,
     elevation: 1,
     automaticallyImplyLeading: false,
     centerTitle: true,
     actions: [
+      widget ?? Container(),
+      Spacer(),
       Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -28,16 +30,16 @@ PreferredSizeWidget getAppbar(String title) {
         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
         child: IconButton(
             onPressed: () {
-              Get.back(); 
+              Get.back();
             },
             icon: Icon(
               Iconsax.arrow_left,
               color: Colors.black,
             )),
-      )
+      ),
     ],
     title: Text(
-      title,
+      title ?? '',
       style: TextStyle(
         fontSize: 18,
         color: Colors.black,

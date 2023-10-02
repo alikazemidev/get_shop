@@ -23,7 +23,7 @@ class ProductsListScreen extends StatelessWidget {
       init: ProductsListController(categoryId: categoryId, defaultSort: sort),
       builder: (controller) {
         return Scaffold(
-          appBar: getAppbar('محصولات'),
+          appBar: getAppbar(title: 'محصولات'),
           body: controller.categories == null || controller.products == null
               ? Center(child: CircularProgressIndicator())
               : Padding(

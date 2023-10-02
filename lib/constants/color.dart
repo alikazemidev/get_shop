@@ -8,4 +8,5 @@ class MyColors {
   static const hintColor = Color(0xffb4b4b4);
   static const textColor = Color(0xff3a3a3a);
   static const darkGreyColor = Color(0xff8c8c8c);
+  static const darkRedColor = Color(0xffff3d3d);
 }
