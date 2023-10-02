@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
 import 'package:get_shop/modules/products/controllers/products_list_controller.dart';
+import 'package:get_shop/modules/products/screens/products_details_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ProductsListScreen extends StatelessWidget {
@@ -294,121 +295,131 @@ class ProductsListScreen extends StatelessWidget {
                                 ),
                                 itemCount: controller.products!.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return SizedBox(
-                                    width: 118,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Stack(
-                                          alignment: Alignment.topLeft,
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(18),
-                                              width: 118,
-                                              height: 130,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                border: Border.all(
-                                                  color: MyColors.dividreColor,
-                                                ),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Color(0xff14489e)
-                                                        .withOpacity(.15),
-                                                    blurRadius: 3,
-                                                    offset: Offset(0, 1),
-                                                  ),
-                                                ],
-                                              ),
-                                              child: Image.network(controller
-                                                      .products![index].image ??
-                                                  ''),
-                                            ),
-                                            Visibility(
-                                              visible: controller
-                                                      .products![index]
-                                                      .discountPercent !=
-                                                  0,
-                                              child: Container(
-                                                // padding: EdgeInsets.symmetric(vertical: 2),
-                                                margin: EdgeInsets.symmetric(
-                                                  horizontal: 8,
-                                                  vertical: 5,
-                                                ),
-                                                height: 18,
-                                                width: 30,
+                                  return GestureDetector(
+                                    onTap: () => Get.to(
+                                      ProductsDetailsScreen(
+                                          id: controller.products![index].id!),
+                                    ),
+                                    child: SizedBox(
+                                      width: 118,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Stack(
+                                            alignment: Alignment.topLeft,
+                                            children: [
+                                              Container(
+                                                padding: EdgeInsets.all(18),
+                                                width: 118,
+                                                height: 130,
                                                 decoration: BoxDecoration(
+                                                  color: Colors.white,
                                                   borderRadius:
-                                                      BorderRadius.circular(4),
-                                                  color: Colors.red,
+                                                      BorderRadius.circular(15),
+                                                  border: Border.all(
+                                                    color:
+                                                        MyColors.dividreColor,
+                                                  ),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Color(0xff14489e)
+                                                          .withOpacity(.15),
+                                                      blurRadius: 3,
+                                                      offset: Offset(0, 1),
+                                                    ),
+                                                  ],
                                                 ),
-                                                child: Center(
-                                                  child: Text(
-                                                    '${controller.products![index].discountPercent}%',
-                                                    style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                child: Image.network(controller
+                                                        .products![index]
+                                                        .image ??
+                                                    ''),
+                                              ),
+                                              Visibility(
+                                                visible: controller
+                                                        .products![index]
+                                                        .discountPercent !=
+                                                    0,
+                                                child: Container(
+                                                  // padding: EdgeInsets.symmetric(vertical: 2),
+                                                  margin: EdgeInsets.symmetric(
+                                                    horizontal: 8,
+                                                    vertical: 5,
+                                                  ),
+                                                  height: 18,
+                                                  width: 30,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    color: Colors.red,
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      '${controller.products![index].discountPercent}%',
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(height: 5),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              controller
-                                                      .products![index].price ??
-                                                  '',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                            SizedBox(width: 2),
-                                            Text(
-                                              'تومان',
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                color: MyColors.darkGreyColor,
-                                              ),
-                                            ),
-                                            Spacer(),
-                                            Visibility(
-                                              visible: controller
-                                                      .products![index]
-                                                      .discountPercent !=
-                                                  0,
-                                              child: Text(
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(height: 5),
+                                          Row(
+                                            children: [
+                                              Text(
                                                 controller.products![index]
-                                                        .realPrice ??
+                                                        .price ??
                                                     '',
                                                 style: TextStyle(
-                                                  decoration: TextDecoration
-                                                      .lineThrough,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              SizedBox(width: 2),
+                                              Text(
+                                                'تومان',
+                                                style: TextStyle(
+                                                  fontSize: 10,
                                                   color: MyColors.darkGreyColor,
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          controller.products![index].title ??
-                                              '',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 14,
+                                              Spacer(),
+                                              Visibility(
+                                                visible: controller
+                                                        .products![index]
+                                                        .discountPercent !=
+                                                    0,
+                                                child: Text(
+                                                  controller.products![index]
+                                                          .realPrice ??
+                                                      '',
+                                                  style: TextStyle(
+                                                    decoration: TextDecoration
+                                                        .lineThrough,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold,
+                                                    color:
+                                                        MyColors.darkGreyColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        )
-                                      ],
+                                          Text(
+                                            controller.products![index].title ??
+                                                '',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },

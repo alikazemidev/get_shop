@@ -1,3 +1,4 @@
+import 'package:get_shop/backend/models/product.dart';
 import 'package:get_shop/backend/repositories/base_repository.dart';
 import 'package:get_shop/backend/response/categories_response.dart';
 import 'package:get_shop/backend/response/dashboard_response.dart';
@@ -36,5 +37,11 @@ class ProductRepository extends BaseRepository {
 
     var res = await dio.get('/products', queryParameters: params);
     return ProductsResponse.fromJson(res.data);
+  }
+
+  Future<Product> getProductDetails(int id) async {
+    var res = await dio.get('/products/$id');
+    print(res.data);
+    return Product.fromJson(res.data['data']);
   }
 }
