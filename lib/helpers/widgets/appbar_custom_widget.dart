@@ -10,8 +10,10 @@ PreferredSizeWidget getAppbar({String? title, Widget? widget}) {
     automaticallyImplyLeading: false,
     centerTitle: true,
     actions: [
-      widget ?? Container(),
-      Spacer(),
+      widget ?? SizedBox(),
+
+      //  back arrow in appbar
+      title == null ? Spacer() : SizedBox(),
       Container(
         decoration: BoxDecoration(
           color: Colors.white,

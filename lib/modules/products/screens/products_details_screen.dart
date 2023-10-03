@@ -5,6 +5,7 @@ import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
 import 'package:get_shop/modules/products/controllers/product_details_controller.dart';
+import 'package:get_shop/modules/products/screens/comments_screen.dart';
 import 'package:get_shop/modules/products/widgets/product_slider_image.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -72,7 +73,9 @@ class ProductsDetailsScreen extends StatelessWidget {
                                     ),
                                     Spacer(),
                                     Visibility(
-                                      visible: controller.product!.discountPercent != 0 ,
+                                      visible:
+                                          controller.product!.discountPercent !=
+                                              0,
                                       child: Row(
                                         children: [
                                           Text(
@@ -95,7 +98,8 @@ class ProductsDetailsScreen extends StatelessWidget {
                                               color: MyColors.darkRedColor,
                                             ),
                                             child: Text(
-                                              controller.product!.discountPercent
+                                              controller
+                                                      .product!.discountPercent
                                                       .toString() +
                                                   "%",
                                               style: TextStyle(
@@ -174,7 +178,9 @@ class ProductsDetailsScreen extends StatelessWidget {
                                         color: MyColors.dividreColor,
                                         width: 1,
                                       )),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(CommentsScreen());
+                                  },
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -203,6 +209,7 @@ class ProductsDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              SizedBox(height: 40),
                             ],
                           ),
                         ),
