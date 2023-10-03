@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
+import 'package:get_shop/modules/products/widgets/comment_bottom_sheet.dart';
 import 'package:iconsax/iconsax.dart';
 
 class CommentsScreen extends StatelessWidget {
@@ -10,6 +11,24 @@ class CommentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: MyColors.primaryColor,
+        onPressed: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(15))
+            ),
+            context: context,
+            builder: (context) => CommentBottomSheet(),
+          );
+        },
+        child: Icon(
+          Icons.add,
+          size: 28,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       appBar: getAppbar(title: 'نظرات'),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -31,6 +50,7 @@ class CommentsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //  user name and rating
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,6 +79,7 @@ class CommentsScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 5),
+                  //  comment time
                   Text(
                     '2 ماه پیش',
                     style: TextStyle(
@@ -67,6 +88,7 @@ class CommentsScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
+                  // comment text
                   Text(
                     'خیلی عالی بود',
                     style: TextStyle(
@@ -74,6 +96,7 @@ class CommentsScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
+                  //  replay to comment
                   Visibility(
                     visible: true,
                     child: Column(
