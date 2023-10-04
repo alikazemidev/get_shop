@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/backend/repositories/auth_repostiry.dart';
+import 'package:get_shop/helpers/controllers/token_controller.dart';
 import 'package:get_shop/modules/home/screens/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,6 +43,7 @@ class LoginController extends GetxController {
           number: numberController.text, password: passController.text);
       if (res != null) {
         prefs!.setString('token', res.token!);
+        Get.put(TokenController(token: res.token!));
         Get.to(HomeScreen());
       }
 

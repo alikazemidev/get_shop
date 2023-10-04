@@ -179,7 +179,7 @@ class ProductsDetailsScreen extends StatelessWidget {
                                         width: 1,
                                       )),
                                   onPressed: () {
-                                    Get.to(CommentsScreen());
+                                    Get.to(CommentsScreen(id: controller.product!.id!,));
                                   },
                                   child: Row(
                                     crossAxisAlignment:
