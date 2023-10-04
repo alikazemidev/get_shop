@@ -194,7 +194,7 @@ class ProductsDetailsScreen extends StatelessWidget {
                                       Text('نظرات'),
                                       Spacer(),
                                       Text(
-                                        '76 نظر',
+                                        controller.product!.reviewsCount.toString() + " نظر",
                                         style: TextStyle(
                                           color: MyColors.darkGreyColor,
                                         ),

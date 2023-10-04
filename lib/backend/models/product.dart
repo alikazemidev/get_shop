@@ -1,5 +1,3 @@
-
-
 class Product {
   int? id;
   String? title;
@@ -10,8 +8,10 @@ class Product {
   String? desc;
   String? category;
   List<String>? gallery;
+  int? reviewsCount;
 
   Product({
+    this.reviewsCount,
     this.id,
     this.title,
     this.image,
@@ -35,6 +35,7 @@ class Product {
     if (json['gallery'] != null) {
       gallery = json["gallery"].cast<String>();
     }
+    reviewsCount = json["reviews_count"];
   }
 
   Map<String, dynamic> toJson() => {
