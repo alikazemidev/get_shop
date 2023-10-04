@@ -25,7 +25,7 @@ class CommentsScreen extends StatelessWidget {
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(15))),
                   context: context,
-                  builder: (context) => CommentBottomSheet(),
+                  builder: (context) => CommentBottomSheet(productId: id),
                 );
               },
               child: Icon(

@@ -5,7 +5,7 @@ class TokenController extends GetxController {
 
   TokenController({required this.token});
 
-  void addToken(){
+  // void addToken(){
     
-  }
+  // }
 }
