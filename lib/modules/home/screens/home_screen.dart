@@ -5,6 +5,7 @@ import 'package:get_shop/modules/home/controllers/home_controller.dart';
 import 'package:get_shop/modules/home/screens/catrgories_screen.dart';
 import 'package:get_shop/modules/home/screens/dashboard_screen.dart';
 import 'package:get_shop/modules/products/screens/products_list_screen.dart';
+import 'package:get_shop/modules/profile/screens/profile_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -84,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                         CategoriesScreen(),
                         Container(color: Colors.blue),
                         Container(color: Colors.yellow),
-                        Container(color: Colors.black),
+                        ProfileScreen(),
                       ],
                     ),
                   ),
