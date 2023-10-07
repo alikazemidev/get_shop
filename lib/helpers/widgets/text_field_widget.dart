@@ -10,16 +10,15 @@ class TextFieldWidget extends StatefulWidget {
     this.type,
     this.inputController,
     this.validator,
+    this.readOnly = false,
   });
-
 
   final String hintText;
   final IconData? icon;
   final TextInputType? type;
   final TextEditingController? inputController;
   final String? Function(String?)? validator;
-
-
+  final bool? readOnly;
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -31,7 +30,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator:widget.validator,
+      // style: TextStyle(color: widget.readOnly == true ? Colors.white:MyColors.hintColor),
+      readOnly: widget.readOnly ?? false,
+      validator: widget.validator,
       controller: widget.inputController,
       obscureText:
           widget.type == TextInputType.visiblePassword ? _obsText : false,
@@ -48,25 +49,33 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                       widget.type != TextInputType.visiblePassword
                           ? widget.icon
                           : (_obsText ? Iconsax.eye : Iconsax.eye_slash),
-                      color: MyColors.hintColor,
+                      color: widget.readOnly == true
+                          ? Colors.white
+                          : MyColors.hintColor,
                       size: 20,
                     ),
                   )
                 : null,
         contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 20),
         hintText: widget.hintText,
-        fillColor: Colors.white,
+        hintStyle: TextStyle(
+          color: widget.readOnly == true ? Colors.white : MyColors.hintColor,
+        ),
+        fillColor:
+            widget.readOnly == true ? Colors.grey.shade400 : Colors.white,
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
-            color: Theme.of(context).dividerColor,
+            color: MyColors.dividreColor,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
-            color: Theme.of(context).primaryColor,
+            color: widget.readOnly == true
+                ? MyColors.dividreColor
+                : Theme.of(context).primaryColor,
             width: 2,
           ),
         ),
