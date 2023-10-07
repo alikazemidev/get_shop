@@ -41,16 +41,13 @@ class EditProfileController extends GetxController {
 
   Future<void> editProfile() async {
     if (formKey.currentState!.validate()) {
-      var res = await profileRepository.editProfile(
+      await profileRepository.editProfile(
         name: nameController.text,
         oldPass: oldPassController.text,
         newPass: newPassController.text,
       );
-      if (res) {
-        Get.find<ProfileController>().getUserProfile();
-        Get.back();
-        successMessage('موفق', 'ثبت نام با موفقیت انجام شد');
-      }
+
+     
     } else {
       print('not valid');
     }
