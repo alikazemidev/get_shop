@@ -28,6 +28,5 @@ class ProfileRepository extends BaseRepository {
     } else if (res.statusCode != 200) {
       errorMessage('ناموفق', res.data['message']);
     }
-    ;
   }
 }
