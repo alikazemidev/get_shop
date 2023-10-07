@@ -24,7 +24,7 @@ class ProfileRepository extends BaseRepository {
     if (res.statusCode == 200) {
       Get.find<ProfileController>().getUserProfile();
       Get.back();
-      successMessage('موفق', 'ثبت نام با موفقیت انجام شد');
+      successMessage('موفق', 'ویرایش با موفقیت انجام شد');
     } else if (res.statusCode != 200) {
       errorMessage('ناموفق', res.data['message']);
     }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 
 import 'package:get_shop/modules/profile/controllers/profile_controller.dart';
+import 'package:get_shop/modules/profile/screens/address_screen.dart';
 import 'package:get_shop/modules/profile/screens/edit_profile_screen.dart';
 import 'package:get_shop/modules/profile/widgets/icon_button_widget.dart';
 import 'package:iconsax/iconsax.dart';
@@ -95,9 +96,12 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
-                      IconButtonWidget(
-                        icon: Iconsax.map,
-                        title: 'آدرس ها',
+                      GestureDetector(
+                        onTap: () => Get.to(AddressScreen()),
+                        child: IconButtonWidget(
+                          icon: Iconsax.map,
+                          title: 'آدرس ها',
+                        ),
                       ),
                       SizedBox(height: 10),
                       IconButtonWidget(

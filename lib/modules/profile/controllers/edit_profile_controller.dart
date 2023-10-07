@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/backend/models/user.dart';
 import 'package:get_shop/backend/repositories/profile_repository.dart';
-import 'package:get_shop/helpers/widgets/snack_widget.dart';
-import 'package:get_shop/modules/profile/controllers/profile_controller.dart';
 
 class EditProfileController extends GetxController {
   ProfileRepository profileRepository = ProfileRepository();
@@ -46,8 +44,6 @@ class EditProfileController extends GetxController {
         oldPass: oldPassController.text,
         newPass: newPassController.text,
       );
-
-     
     } else {
       print('not valid');
     }
