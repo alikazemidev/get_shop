@@ -20,32 +20,41 @@ class EditProfileScreen extends StatelessWidget {
             appBar: getAppbar(title: 'ویرایش پروفایل'),
             body: Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  TextFieldWidget(
-                    hintText: 'نام و نام خانوادگی',
-                    icon: Iconsax.user,
-                    inputController: controller.nameController,
-                  ),
-                  SizedBox(height: 15),
-                  TextFieldWidget(
-                      inputController: controller.mobileController,
-                      hintText: '09101010100',
-                      icon: Iconsax.mobile,
-                      readOnly: true),
-                  SizedBox(height: 15),
-                  TextFieldWidget(
-                      inputController: controller.oldPassController,
-                      hintText: 'رمز عبور قلبی',
-                      type: TextInputType.visiblePassword),
-                  SizedBox(height: 15),
-                  TextFieldWidget(
-                      inputController: controller.newPassController,
-                      hintText: 'رمز عبور جدید',
-                      type: TextInputType.visiblePassword),
-                  SizedBox(height: 30),
-                  ButtonPrimary(text: 'ویرایش', onPressed: () {})
-                ],
+              child: Form(
+                key: controller.formKey,
+                child: Column(
+                  children: [
+                    TextFieldWidget(
+                      validator: controller.nameValidator,
+                      hintText: 'نام و نام خانوادگی',
+                      icon: Iconsax.user,
+                      inputController: controller.nameController,
+                    ),
+                    SizedBox(height: 15),
+                    TextFieldWidget(
+                        inputController: controller.mobileController,
+                        hintText: '09101010100',
+                        icon: Iconsax.mobile,
+                        readOnly: true),
+                    SizedBox(height: 15),
+                    TextFieldWidget(
+                      validator: controller.oldPassValidator,
+                        inputController: controller.oldPassController,
+                        hintText: 'رمز عبور قبلی',
+                        type: TextInputType.visiblePassword),
+                    SizedBox(height: 15),
+                    TextFieldWidget(
+                      validator: controller.newPassValidator,
+                        inputController: controller.newPassController,
+                        hintText: 'رمز عبور جدید',
+                        type: TextInputType.visiblePassword),
+                    SizedBox(height: 30),
+                    ButtonPrimary(
+                      text: 'ویرایش',
+                      onPressed: controller.editProfile,
+                    )
+                  ],
+                ),
               ),
             ),
           );
