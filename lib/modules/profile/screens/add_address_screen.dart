@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
 import 'package:get_shop/helpers/widgets/text_field_widget.dart';
+import 'package:get_shop/modules/profile/screens/map_screen.dart';
 import 'package:get_shop/modules/profile/widgets/select_province_widget.dart';
 
 class AddAddressScreen extends StatelessWidget {
@@ -27,8 +29,8 @@ class AddAddressScreen extends StatelessWidget {
                       onTap: () {
                         showModalBottomSheet(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(top: Radius.circular(25))
-                          ),
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(25))),
                           context: context,
                           builder: (context) {
                             return SelectProvinceWidget();
@@ -104,7 +106,11 @@ class AddAddressScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               GestureDetector(
-                onTap: () {},
+                onTap: () => Get.to(MapScreen(
+                  onSelected: (positon) {
+                    print(positon);
+                  },
+                )),
                 child: Container(
                   width: double.infinity,
                   padding: EdgeInsets.all(13),

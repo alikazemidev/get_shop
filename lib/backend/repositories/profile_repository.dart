@@ -7,7 +7,7 @@ import 'package:get_shop/modules/profile/controllers/profile_controller.dart';
 class ProfileRepository extends BaseRepository {
   Future<User> getUser() async {
     var res = await dio.get('/profile');
-    print(res.data);
+  
     return User.fromJson(res.data['data']);
   }
 
