@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
+import 'package:get_shop/modules/profile/screens/add_address_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class AddressScreen extends StatelessWidget {
@@ -116,7 +117,7 @@ class AddressScreen extends StatelessWidget {
             child: ButtonPrimary(
               hasBorder: true,
               text: 'آفزودن آدرس',
-              onPressed: () {},
+              onPressed: () => Get.to(AddAddressScreen()),
             ),
           ),
         ],

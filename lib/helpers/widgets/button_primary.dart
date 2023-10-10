@@ -25,7 +25,7 @@ class ButtonPrimary extends StatelessWidget {
           color: hasBorder ? MyColors.primaryColor : Colors.transparent,
         ),
       ),
-      color: hasBorder ? Colors.transparent : Theme.of(context).primaryColor,
+      color: hasBorder ? MyColors.scaffoldBgColor : Theme.of(context).primaryColor,
       minWidth: double.infinity,
       child: isLoading
           ? SizedBox(
@@ -49,6 +49,7 @@ class ButtonPrimary extends StatelessWidget {
                   style: TextStyle(
                     color: hasBorder ? MyColors.primaryColor : Colors.white,
                     fontSize: 17,
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
               ],
