@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
+
 import 'package:get/get.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
@@ -116,8 +117,7 @@ class _MapScreenState extends State<MapScreen> {
               text: 'ثبت موقعیت مکانی',
               onPressed: () {
                 widget.onSelected(
-                  '${selectedPosition!.latitude},${selectedPosition!.longitude}'
-                );
+                    '${selectedPosition!.latitude},${selectedPosition!.longitude}');
                 Get.back();
               },
             )
