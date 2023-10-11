@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
+import 'package:get_shop/helpers/controllers/token_controller.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
 import 'package:get_shop/helpers/widgets/text_field_widget.dart';
 import 'package:get_shop/modules/auth/controller/login_controller.dart';
@@ -17,6 +18,7 @@ class LoginScreen extends StatelessWidget {
       body: GetBuilder<LoginController>(
           init: LoginController(),
           builder: (controller) {
+            
             return SafeArea(
               child: SizedBox(
                 width: double.infinity,
