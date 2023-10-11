@@ -3,21 +3,21 @@ import 'package:get/get.dart';
 import 'package:get_shop/backend/response/province_response.dart';
 import 'package:get_shop/constants/color.dart';
 
-class SelectProvinceWidget extends StatelessWidget {
-  final List<Province> provinces;
-  final Function(Province province) onSelected;
-  const SelectProvinceWidget(
-      {super.key, required this.provinces, required this.onSelected});
+class SelectCityWidget extends StatelessWidget {
+  final List<City> cities;
+  final Function(City city) onSelected;
+  const SelectCityWidget(
+      {super.key, required this.cities, required this.onSelected});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.all(20),
-      itemCount: provinces.length,
+      itemCount: cities.length,
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () {
-            onSelected(provinces[index]);
+            onSelected(cities[index]);
             Get.back();
           },
           child: Container(
@@ -29,7 +29,7 @@ class SelectProvinceWidget extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(25),
             ),
-            child: Center(child: Text(provinces[index].name ?? '')),
+            child: Center(child: Text(cities[index].name ?? '')),
           ),
         );
       },

@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 import 'package:get_shop/backend/models/user.dart';
 import 'package:get_shop/backend/repositories/base_repository.dart';
+import 'package:get_shop/backend/response/province_response.dart';
 import 'package:get_shop/helpers/widgets/snack_widget.dart';
 import 'package:get_shop/modules/profile/controllers/profile_controller.dart';
 
 class ProfileRepository extends BaseRepository {
   Future<User> getUser() async {
     var res = await dio.get('/profile');
-  
+
     return User.fromJson(res.data['data']);
   }
 
@@ -28,5 +29,11 @@ class ProfileRepository extends BaseRepository {
     } else if (res.statusCode != 200) {
       errorMessage('ناموفق', res.data['message']);
     }
+  }
+
+  Future<ProvinceResponse> getProvinces() async {
+    var res = await dio.get('/provinces');
+
+    return ProvinceResponse.fromJson(res.data);
   }
 }

@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
+import 'package:get_shop/helpers/widgets/snack_widget.dart';
 import 'package:get_shop/helpers/widgets/text_field_widget.dart';
+import 'package:get_shop/modules/profile/controllers/add_address_controller.dart';
 import 'package:get_shop/modules/profile/screens/map_screen.dart';
+import 'package:get_shop/modules/profile/widgets/select_city_widget.dart';
 import 'package:get_shop/modules/profile/widgets/select_province_widget.dart';
 
 class AddAddressScreen extends StatelessWidget {
@@ -13,131 +16,183 @@ class AddAddressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: getAppbar(title: 'ثبت آدرس'),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Form(
-          child: Column(
-            children: [
-              TextFieldWidget(hintText: 'عنوان آدرس'),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(25))),
-                          context: context,
-                          builder: (context) {
-                            return SelectProvinceWidget();
-                          },
-                        );
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(13),
-                        // height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: MyColors.dividreColor,
+    return GetBuilder<AddAddressController>(
+        init: AddAddressController(),
+        builder: (controller) {
+          return Scaffold(
+            appBar: getAppbar(title: 'ثبت آدرس'),
+            body: controller.provinceResponse == null
+                ? Center(child: CircularProgressIndicator())
+                : SingleChildScrollView(
+                    padding: const EdgeInsets.all(20),
+                    child: Form(
+                      child: Column(
+                        children: [
+                          TextFieldWidget(hintText: 'عنوان آدرس'),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.vertical(
+                                              top: Radius.circular(25))),
+                                      context: context,
+                                      builder: (context) {
+                                        return SelectProvinceWidget(
+                                          onSelected: (province) {
+                                            controller.selectProvince(province);
+                                          },
+                                          provinces: controller
+                                              .provinceResponse!.provinceData!,
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(13),
+                                    // height: 50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(
+                                        color: MyColors.dividreColor,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          controller.selectedProvince == null
+                                              ? 'استان'
+                                              : controller
+                                                  .selectedProvince!.name!,
+                                          style: TextStyle(
+                                            color:
+                                                controller.selectedProvince ==
+                                                        null
+                                                    ? MyColors.hintColor
+                                                    : MyColors.primaryColor,
+                                          ),
+                                        ),
+                                        Spacer(),
+                                        Icon(
+                                          CupertinoIcons.chevron_down,
+                                          color: controller.selectedProvince ==
+                                                  null
+                                              ? MyColors.hintColor
+                                              : MyColors.primaryColor,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    if (controller.selectedProvince != null) {
+                                      showModalBottomSheet(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.vertical(
+                                                top: Radius.circular(25))),
+                                        context: context,
+                                        builder: (context) {
+                                          return SelectCityWidget(
+                                              onSelected: (city) {
+                                                controller.selectCity(city);
+                                              },
+                                              cities: controller
+                                                  .selectedProvince!.cities!);
+                                        },
+                                      );
+                                    } else {
+                                      errorMessage('خطا', 'ابتدا استان مورد نظر را انتخاب بکنید');
+                                    }
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(13),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(
+                                        color: MyColors.dividreColor,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          controller.selectedCity == null
+                                              ? 'شهر'
+                                              : controller.selectedCity!.name ??
+                                                  '',
+                                          style: TextStyle(
+                                            color:
+                                                controller.selectedCity == null
+                                                    ? MyColors.hintColor
+                                                    : MyColors.primaryColor,
+                                          ),
+                                        ),
+                                        Spacer(),
+                                        Icon(
+                                          CupertinoIcons.chevron_down,
+                                          color: controller.selectedCity == null
+                                              ? MyColors.hintColor
+                                              : MyColors.primaryColor,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'استان',
-                              style: TextStyle(
-                                color: MyColors.hintColor,
+                          SizedBox(height: 10),
+                          TextFieldWidget(hintText: 'آدرس'),
+                          SizedBox(height: 10),
+                          TextFieldWidget(
+                            hintText: 'کد پستی',
+                            type: TextInputType.number,
+                          ),
+                          SizedBox(height: 10),
+                          GestureDetector(
+                            onTap: () => Get.to(MapScreen(
+                              onSelected: (positon) {
+                                print(positon);
+                              },
+                            )),
+                            child: Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.all(13),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: MyColors.dividreColor,
+                                ),
+                              ),
+                              child: Text(
+                                'انتخاب موقعیت مکانی روی نقشه',
+                                style: TextStyle(
+                                  color: MyColors.hintColor,
+                                ),
                               ),
                             ),
-                            Spacer(),
-                            Icon(
-                              CupertinoIcons.chevron_down,
-                              color: MyColors.hintColor,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(13),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: MyColors.dividreColor,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            'شهر',
-                            style: TextStyle(
-                              color: MyColors.hintColor,
-                            ),
                           ),
-                          Spacer(),
-                          Icon(
-                            CupertinoIcons.chevron_down,
-                            color: MyColors.hintColor,
+                          SizedBox(height: 20),
+                          ButtonPrimary(
+                            text: 'افزودن آدرس',
+                            onPressed: () {},
                           )
                         ],
                       ),
                     ),
                   ),
-                ],
-              ),
-              SizedBox(height: 10),
-              TextFieldWidget(hintText: 'آدرس'),
-              SizedBox(height: 10),
-              TextFieldWidget(
-                hintText: 'کد پستی',
-                type: TextInputType.number,
-              ),
-              SizedBox(height: 10),
-              GestureDetector(
-                onTap: () => Get.to(MapScreen(
-                  onSelected: (positon) {
-                    print(positon);
-                  },
-                )),
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(13),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: MyColors.dividreColor,
-                    ),
-                  ),
-                  child: Text(
-                    'انتخاب موقعیت مکانی روی نقشه',
-                    style: TextStyle(
-                      color: MyColors.hintColor,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              ButtonPrimary(
-                text: 'افزودن آدرس',
-                onPressed: () {},
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+          );
+        });
   }
 }

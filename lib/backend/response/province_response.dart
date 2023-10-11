@@ -1,21 +1,21 @@
 class ProvinceResponse {
-  List<Province>? data;
+  List<Province>? provinceData;
 
-  ProvinceResponse({this.data});
+  ProvinceResponse({this.provinceData});
 
   ProvinceResponse.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Province>[];
+      provinceData = <Province>[];
       json['data'].forEach((v) {
-        data!.add(new Province.fromJson(v));
+        provinceData!.add(new Province.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    if (this.provinceData != null) {
+      data['data'] = this.provinceData!.map((v) => v.toJson()).toList();
     }
     return data;
   }
