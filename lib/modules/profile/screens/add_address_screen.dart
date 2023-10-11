@@ -26,9 +26,16 @@ class AddAddressScreen extends StatelessWidget {
                 : SingleChildScrollView(
                     padding: const EdgeInsets.all(20),
                     child: Form(
+                      key: controller.formKey,
                       child: Column(
                         children: [
-                          TextFieldWidget(hintText: 'عنوان آدرس'),
+                          TextFieldWidget(
+                            validator: controller.titleValidator,
+                            textColor: MyColors.primaryColor,
+                            hintText: 'عنوان آدرس',
+                            inputController:
+                                controller.titleAddressInputController,
+                          ),
                           SizedBox(height: 10),
                           Row(
                             children: [
@@ -111,7 +118,8 @@ class AddAddressScreen extends StatelessWidget {
                                         },
                                       );
                                     } else {
-                                      errorMessage('خطا', 'ابتدا استان مورد نظر را انتخاب بکنید');
+                                      errorMessage('خطا',
+                                          'ابتدا استان مورد نظر را انتخاب بکنید');
                                     }
                                   },
                                   child: Container(
@@ -152,17 +160,25 @@ class AddAddressScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 10),
-                          TextFieldWidget(hintText: 'آدرس'),
+                          TextFieldWidget(
+                            validator: controller.addressValidator,
+                            hintText: 'آدرس',
+                            textColor: MyColors.primaryColor,
+                            inputController: controller.AddressInuputController,
+                          ),
                           SizedBox(height: 10),
                           TextFieldWidget(
+                            inputController:
+                                controller.postalCodeInputController,
                             hintText: 'کد پستی',
+                            textColor: MyColors.primaryColor,
                             type: TextInputType.number,
                           ),
                           SizedBox(height: 10),
                           GestureDetector(
                             onTap: () => Get.to(MapScreen(
                               onSelected: (positon) {
-                                print(positon);
+                                controller.selectPosition(positon);
                               },
                             )),
                             child: Container(
@@ -176,9 +192,13 @@ class AddAddressScreen extends StatelessWidget {
                                 ),
                               ),
                               child: Text(
-                                'انتخاب موقعیت مکانی روی نقشه',
+                                controller.selectedPosition == null
+                                    ? 'انتخاب موقعیت مکانی روی نقشه'
+                                    : 'موقعیت مکانی انتخاب شد',
                                 style: TextStyle(
-                                  color: MyColors.hintColor,
+                                  color: controller.selectedPosition == null
+                                      ? MyColors.hintColor
+                                      : MyColors.primaryColor,
                                 ),
                               ),
                             ),
@@ -186,7 +206,7 @@ class AddAddressScreen extends StatelessWidget {
                           SizedBox(height: 20),
                           ButtonPrimary(
                             text: 'افزودن آدرس',
-                            onPressed: () {},
+                            onPressed: controller.addAddress,
                           )
                         ],
                       ),

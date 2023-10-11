@@ -36,4 +36,22 @@ class ProfileRepository extends BaseRepository {
 
     return ProvinceResponse.fromJson(res.data);
   }
+
+  Future<bool> addAddress({
+    required String title,
+    required String address,
+    required int cityId,
+    String? postalCode,
+    String? latlong,
+  }) async {
+    var res = await dio.post('/address', data: {
+      'title': title,
+      'city_id': cityId.toString(),
+      'address': address,
+      'latlong': latlong,
+      'postal_code': postalCode,
+    });
+    print(res.data);
+    return res.statusCode == 200;
+  }
 }

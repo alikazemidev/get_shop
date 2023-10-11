@@ -18,7 +18,7 @@ class AddressScreen extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.all(20),
-              itemCount: 5,
+              itemCount: 2,
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsets.only(bottom: 15),

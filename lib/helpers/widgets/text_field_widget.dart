@@ -11,6 +11,7 @@ class TextFieldWidget extends StatefulWidget {
     this.inputController,
     this.validator,
     this.readOnly = false,
+    this.textColor,
   });
 
   final String hintText;
@@ -19,6 +20,7 @@ class TextFieldWidget extends StatefulWidget {
   final TextEditingController? inputController;
   final String? Function(String?)? validator;
   final bool? readOnly;
+  final Color? textColor;
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -30,7 +32,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // style: TextStyle(color: widget.readOnly == true ? Colors.white:MyColors.hintColor),
+      style: TextStyle(color: widget.textColor),
       readOnly: widget.readOnly ?? false,
       validator: widget.validator,
       controller: widget.inputController,
@@ -38,6 +40,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           widget.type == TextInputType.visiblePassword ? _obsText : false,
       keyboardType: widget.type == null ? TextInputType.text : widget.type,
       decoration: InputDecoration(
+      
         suffixIcon:
             widget.icon != null || widget.type == TextInputType.visiblePassword
                 ? GestureDetector(
