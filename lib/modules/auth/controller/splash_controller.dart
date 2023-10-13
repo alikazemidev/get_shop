@@ -14,7 +14,6 @@ class SplashController extends GetxController {
         Get.put(TokenController(token: prefs!.getString('token')));
         Get.to(HomeScreen());
       } else {
-        Get.put(TokenController(token: prefs!.getString('token')));
         Get.to(StartScreen());
       }
     });

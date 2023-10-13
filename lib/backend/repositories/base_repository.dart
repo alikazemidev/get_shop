@@ -8,7 +8,8 @@ class BaseRepository {
       baseUrl: 'https://shop.hitaldev.ir/api',
       headers: {
         "Accept": "application/json",
-        "Authorization": "Bearer ${Get.find<TokenController>().token}"
+        if (Get.isRegistered<TokenController>())
+          "Authorization": "Bearer ${Get.find<TokenController>().token}"
       },
       validateStatus: (status) => status! < 500,
     ),
