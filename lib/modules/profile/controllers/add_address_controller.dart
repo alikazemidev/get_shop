@@ -1,18 +1,23 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:get_shop/backend/models/address.dart';
 import 'package:get_shop/backend/repositories/profile_repository.dart';
 import 'package:get_shop/backend/response/province_response.dart';
 import 'package:get_shop/helpers/widgets/snack_widget.dart';
 import 'package:get_shop/modules/profile/controllers/address_controller.dart';
 
 class AddAddressController extends GetxController {
+  final Address? address;
+  AddAddressController({this.address});
+
   var formKey = GlobalKey<FormState>();
   TextEditingController titleAddressInputController = TextEditingController();
-  TextEditingController AddressInuputController = TextEditingController();
+  TextEditingController addressInuputController = TextEditingController();
   TextEditingController postalCodeInputController = TextEditingController();
 
   ProfileRepository profileRepository = ProfileRepository();
   ProvinceResponse? provinceResponse;
+
   Province? selectedProvince;
   City? selectedCity;
   String? selectedPosition;
@@ -33,6 +38,14 @@ class AddAddressController extends GetxController {
 
   Future<void> getProvinces() async {
     provinceResponse = await profileRepository.getProvinces();
+    if (address != null) {
+      selectedProvince = provinceResponse!.provinceData!.firstWhere(
+        (element) => element.id == address!.provinceId!,
+      );
+      selectedCity = selectedProvince!.cities!.firstWhere(
+        (element) => element.id == address!.cityId,
+      );
+    }
     update();
   }
 
@@ -56,7 +69,7 @@ class AddAddressController extends GetxController {
       if (selectedCity != null) {
         var res = await profileRepository.addAddress(
             title: titleAddressInputController.text,
-            address: AddressInuputController.text,
+            address: addressInuputController.text,
             postalCode: postalCodeInputController.text,
             latlong: selectedPosition,
             cityId: selectedCity!.id!);
@@ -76,6 +89,13 @@ class AddAddressController extends GetxController {
   @override
   void onInit() {
     getProvinces();
+    if (address != null) {
+      titleAddressInputController.text = address!.title ?? '';
+      addressInuputController.text = address!.address ?? '';
+      postalCodeInputController.text = address!.postalCode.toString();
+      selectedPosition = address!.latlong!;
+      update();
+    }
     super.onInit();
   }
 }

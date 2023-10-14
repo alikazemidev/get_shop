@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_shop/backend/models/address.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
@@ -13,15 +14,17 @@ import 'package:get_shop/modules/profile/widgets/select_city_widget.dart';
 import 'package:get_shop/modules/profile/widgets/select_province_widget.dart';
 
 class AddAddressScreen extends StatelessWidget {
-  const AddAddressScreen({super.key});
+  final Address? address;
+  const AddAddressScreen({super.key, this.address});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddAddressController>(
-        init: AddAddressController(),
+        init: AddAddressController(address: address),
         builder: (controller) {
           return Scaffold(
-            appBar: getAppbar(title: 'ثبت آدرس'),
+            appBar:
+                getAppbar(title: address == null ? 'ثبت آدرس' : 'ویرایش آدرس'),
             body: controller.provinceResponse == null
                 ? Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
@@ -165,7 +168,7 @@ class AddAddressScreen extends StatelessWidget {
                             validator: controller.addressValidator,
                             hintText: 'آدرس',
                             textColor: MyColors.primaryColor,
-                            inputController: controller.AddressInuputController,
+                            inputController: controller.addressInuputController,
                           ),
                           SizedBox(height: 10),
                           TextFieldWidget(
@@ -206,7 +209,8 @@ class AddAddressScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 20),
                           ButtonPrimary(
-                            text: 'افزودن آدرس',
+                            text:
+                                address == null ? 'افزودن آدرس' : 'ویرایش آدرس',
                             onPressed: controller.addAddress,
                           )
                         ],

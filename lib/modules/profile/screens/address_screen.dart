@@ -61,7 +61,11 @@ class AddressScreen extends StatelessWidget {
                                       ),
                                       Spacer(),
                                       GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Get.to(AddAddressScreen(
+                                            address: address,
+                                          ));
+                                        },
                                         child: Container(
                                           padding: EdgeInsets.all(6),
                                           decoration: BoxDecoration(
