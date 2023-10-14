@@ -80,7 +80,9 @@ class AddressScreen extends StatelessWidget {
                                       ),
                                       SizedBox(width: 10),
                                       GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          controller.deleteAddress(address.id!);
+                                        },
                                         child: Container(
                                           padding: EdgeInsets.all(6),
                                           decoration: BoxDecoration(

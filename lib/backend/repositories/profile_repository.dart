@@ -61,4 +61,9 @@ class ProfileRepository extends BaseRepository {
     print(res.data);
     return AddressResponse.fromJson(res.data);
   }
+
+  Future<bool> deleteAddress({required int id}) async {
+    var res = await dio.delete('/address/$id');
+    return res.statusCode == 200;
+  }
 }
