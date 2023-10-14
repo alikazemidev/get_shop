@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_shop/backend/models/user.dart';
 import 'package:get_shop/backend/repositories/base_repository.dart';
+import 'package:get_shop/backend/response/address_response.dart';
 import 'package:get_shop/backend/response/province_response.dart';
 import 'package:get_shop/helpers/widgets/snack_widget.dart';
 import 'package:get_shop/modules/profile/controllers/profile_controller.dart';
@@ -53,5 +54,11 @@ class ProfileRepository extends BaseRepository {
     });
     print(res.data);
     return res.statusCode == 200;
+  }
+
+  Future<AddressResponse> getAddress() async {
+    var res = await dio.get('/address');
+    print(res.data);
+    return AddressResponse.fromJson(res.data);
   }
 }

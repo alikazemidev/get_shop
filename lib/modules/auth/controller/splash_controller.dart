@@ -12,6 +12,7 @@ class SplashController extends GetxController {
     Future.delayed(const Duration(seconds: 2)).then((value) {
       if (prefs!.getString('token') != null) {
         Get.put(TokenController(token: prefs!.getString('token')));
+        print(prefs!.getString('token'));
         Get.to(HomeScreen());
       } else {
         Get.to(StartScreen());

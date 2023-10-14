@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_shop/backend/repositories/profile_repository.dart';
 import 'package:get_shop/backend/response/province_response.dart';
 import 'package:get_shop/helpers/widgets/snack_widget.dart';
+import 'package:get_shop/modules/profile/controllers/address_controller.dart';
 
 class AddAddressController extends GetxController {
   var formKey = GlobalKey<FormState>();
@@ -60,6 +61,7 @@ class AddAddressController extends GetxController {
             latlong: selectedPosition,
             cityId: selectedCity!.id!);
         if (res) {
+          Get.find<AddressController>().getAddress();
           Get.back();
           successMessage('موفق', 'آدرس با موفقیت ثبت شد');
         }
