@@ -211,9 +211,7 @@ class AddAddressScreen extends StatelessWidget {
                           ButtonPrimary(
                             text:
                                 address == null ? 'افزودن آدرس' : 'ویرایش آدرس',
-                            onPressed: address != null
-                                ? controller.editAddress
-                                : controller.addAddress,
+                            onPressed: controller.addOrEditAddress,
                           )
                         ],
                       ),

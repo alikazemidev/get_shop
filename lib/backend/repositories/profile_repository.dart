@@ -77,7 +77,6 @@ class ProfileRepository extends BaseRepository {
 
   Future<AddressResponse> getAddress() async {
     var res = await dio.get('/address');
-    print(res.data);
     return AddressResponse.fromJson(res.data);
   }
 

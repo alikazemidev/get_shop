@@ -65,41 +65,33 @@ class AddAddressController extends GetxController {
     update();
   }
 
-  Future<void> addAddress() async {
+  Future<void> addOrEditAddress() async {
     if (formKey.currentState!.validate()) {
       if (selectedCity != null) {
-        var res = await profileRepository.addAddress(
-            title: titleAddressInputController.text,
-            address: addressInuputController.text,
-            postalCode: postalCodeInputController.text,
-            latlong: selectedPosition,
-            cityId: selectedCity!.id!);
-        if (res) {
-          Get.find<AddressController>().getAddress();
-          Get.back();
-          successMessage('موفق', 'آدرس با موفقیت ثبت شد');
-        }
-      } else {
-        errorMessage('خطا', 'لطفا استان و شهر خود را انتخاب کنید');
-      }
-    } else {
-      print('not validate');
-    }
-  }
-
-  Future<void> editAddress() async {
-    if (formKey.currentState!.validate()) {
-      if (selectedCity != null) {
-        var res = await profileRepository.editAddress(address!.id!,
-            title: titleAddressInputController.text,
-            address: addressInuputController.text,
-            postalCode: postalCodeInputController.text,
-            latlong: selectedPosition,
-            cityId: selectedCity!.id!);
-        if (res) {
-          Get.find<AddressController>().getAddress();
-          Get.back();
-          successMessage('موفق', 'آدرس با موفقیت ویرایش شد');
+        if (address != null) {
+          var res = await profileRepository.editAddress(address!.id!,
+              title: titleAddressInputController.text,
+              address: addressInuputController.text,
+              postalCode: postalCodeInputController.text,
+              latlong: selectedPosition,
+              cityId: selectedCity!.id!);
+          if (res) {
+            Get.find<AddressController>().getAddress();
+            Get.back();
+            successMessage('موفق', 'آدرس با موفقیت ویرایش شد');
+          }
+        } else {
+          var res = await profileRepository.addAddress(
+              title: titleAddressInputController.text,
+              address: addressInuputController.text,
+              postalCode: postalCodeInputController.text,
+              latlong: selectedPosition,
+              cityId: selectedCity!.id!);
+          if (res) {
+            Get.find<AddressController>().getAddress();
+            Get.back();
+            successMessage('موفق', 'آدرس با موفقیت ثبت شد');
+          }
         }
       } else {
         errorMessage('خطا', 'لطفا استان و شهر خود را انتخاب کنید');
