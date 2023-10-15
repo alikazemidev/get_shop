@@ -6,7 +6,9 @@ import 'package:get_shop/modules/profile/controllers/profile_controller.dart';
 import 'package:get_shop/modules/profile/screens/address_screen.dart';
 import 'package:get_shop/modules/profile/screens/edit_profile_screen.dart';
 import 'package:get_shop/modules/profile/widgets/icon_button_widget.dart';
+import 'package:get_shop/modules/profile/widgets/logout_dialog_widget.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -109,14 +111,30 @@ class ProfileScreen extends StatelessWidget {
                         title: 'سفارشات',
                       ),
                       SizedBox(height: 10),
-                      IconButtonWidget(
-                        icon: Iconsax.user_cirlce_add,
-                        title: 'دعوت از دوستان',
+                      GestureDetector(
+                        onTap: () {
+                          Share.share(
+                              'لطفا اپ فروشگاهی ما رو به دوستان خود معرفی کنید آدرس: https://shoppy.com');
+                        },
+                        child: IconButtonWidget(
+                          icon: Iconsax.user_cirlce_add,
+                          title: 'دعوت از دوستان',
+                        ),
                       ),
                       SizedBox(height: 10),
-                      IconButtonWidget(
-                        icon: Iconsax.logout,
-                        title: 'خروج از حساب',
+                      GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return LogoutDialogWidget();
+                            },
+                          );
+                        },
+                        child: IconButtonWidget(
+                          icon: Iconsax.logout,
+                          title: 'خروج از حساب',
+                        ),
                       ),
                       SizedBox(height: 15),
                     ],
