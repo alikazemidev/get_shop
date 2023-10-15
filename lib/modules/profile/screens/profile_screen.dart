@@ -10,11 +10,18 @@ import 'package:get_shop/modules/profile/widgets/logout_dialog_widget.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:share_plus/share_plus.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    
     return GetBuilder<ProfileController>(
         init: ProfileController(),
         builder: (controller) {
@@ -142,4 +149,7 @@ class ProfileScreen extends StatelessWidget {
                 );
         });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
