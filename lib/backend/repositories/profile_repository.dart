@@ -56,6 +56,25 @@ class ProfileRepository extends BaseRepository {
     return res.statusCode == 200;
   }
 
+  Future<bool> editAddress(
+    int id, {
+    required String title,
+    required String address,
+    required int cityId,
+    String? postalCode,
+    String? latlong,
+  }) async {
+    var res = await dio.put('/address/$id', data: {
+      'title': title,
+      'city_id': cityId.toString(),
+      'address': address,
+      'latlong': latlong,
+      'postal_code': postalCode,
+    });
+    print(res.data);
+    return res.statusCode == 200;
+  }
+
   Future<AddressResponse> getAddress() async {
     var res = await dio.get('/address');
     print(res.data);

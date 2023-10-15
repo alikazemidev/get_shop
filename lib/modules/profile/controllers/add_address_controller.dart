@@ -51,6 +51,7 @@ class AddAddressController extends GetxController {
 
   void selectProvince(Province value) {
     selectedProvince = value;
+    selectedCity = null;
     update();
   }
 
@@ -77,6 +78,28 @@ class AddAddressController extends GetxController {
           Get.find<AddressController>().getAddress();
           Get.back();
           successMessage('موفق', 'آدرس با موفقیت ثبت شد');
+        }
+      } else {
+        errorMessage('خطا', 'لطفا استان و شهر خود را انتخاب کنید');
+      }
+    } else {
+      print('not validate');
+    }
+  }
+
+  Future<void> editAddress() async {
+    if (formKey.currentState!.validate()) {
+      if (selectedCity != null) {
+        var res = await profileRepository.editAddress(address!.id!,
+            title: titleAddressInputController.text,
+            address: addressInuputController.text,
+            postalCode: postalCodeInputController.text,
+            latlong: selectedPosition,
+            cityId: selectedCity!.id!);
+        if (res) {
+          Get.find<AddressController>().getAddress();
+          Get.back();
+          successMessage('موفق', 'آدرس با موفقیت ویرایش شد');
         }
       } else {
         errorMessage('خطا', 'لطفا استان و شهر خود را انتخاب کنید');
