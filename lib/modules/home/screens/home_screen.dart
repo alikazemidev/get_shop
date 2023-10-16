@@ -4,6 +4,7 @@ import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/modules/home/controllers/home_controller.dart';
 import 'package:get_shop/modules/home/screens/catrgories_screen.dart';
 import 'package:get_shop/modules/home/screens/dashboard_screen.dart';
+import 'package:get_shop/modules/products/screens/cart_screen.dart';
 import 'package:get_shop/modules/products/screens/products_list_screen.dart';
 import 'package:get_shop/modules/profile/screens/bookmarks_screen.dart';
 import 'package:get_shop/modules/profile/screens/profile_screen.dart';
@@ -77,14 +78,12 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: PageView(
                       physics: NeverScrollableScrollPhysics(),
-                      // onPageChanged: (value) {
-                      //   controller.changePage(indexPage: value);
-                      // },
+                   
                       controller: controller.pageController,
                       children: [
                         DashboardScreen(),
                         CategoriesScreen(),
-                        Container(color: Colors.blue),
+                        CartScreen(),
                         BookMarksScreen(),
                         ProfileScreen(),
                       ],
