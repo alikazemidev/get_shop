@@ -1,15 +1,15 @@
 import 'package:get_shop/backend/models/product.dart';
 
 class ProductsResponse {
-  List<Product>? productsData;
+  List<Proudct>? productsData;
 
   ProductsResponse({this.productsData});
 
   ProductsResponse.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      productsData = <Product>[];
+      productsData = <Proudct>[];
       json['data'].forEach((v) {
-        productsData!.add(Product.fromJson(v));
+        productsData!.add(Proudct.fromJson(v));
       });
     }
   }

@@ -4,6 +4,7 @@ import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/modules/home/controllers/home_controller.dart';
 import 'package:get_shop/modules/home/screens/catrgories_screen.dart';
 import 'package:get_shop/modules/home/screens/dashboard_screen.dart';
+import 'package:get_shop/modules/products/controllers/cart_controller.dart';
 import 'package:get_shop/modules/products/screens/cart_screen.dart';
 import 'package:get_shop/modules/products/screens/products_list_screen.dart';
 import 'package:get_shop/modules/profile/screens/bookmarks_screen.dart';
@@ -28,22 +29,52 @@ class HomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: Row(
                       children: [
-                        Container(
-                          height: 45,
-                          width: 45,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              width: 2,
-                              color: MyColors.dividreColor,
+                        Stack(
+                          children: [
+                            Container(
+                              height: 45,
+                              width: 45,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  width: 2,
+                                  color: MyColors.dividreColor,
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Icon(
+                                Iconsax.bag_2,
+                                color: Colors.black,
+                                size: 24,
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Icon(
-                            Iconsax.bag_2,
-                            color: Colors.black,
-                            size: 24,
-                          ),
+                            GetBuilder<CartController>(
+                                init: CartController(),
+                                builder: (controller) {
+                                  return controller.cartResponse == null
+                                      ? Container()
+                                      : Container(
+                                          height: 16,
+                                          width: 16,
+                                          decoration: BoxDecoration(
+                                              color: MyColors.darkRedColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(100)),
+                                          child: Center(
+                                            child: Text(
+                                              controller
+                                                  .cartResponse!.totalItems
+                                                  .toString(),
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                }),
+                          ],
                         ),
                         Spacer(),
                         Image.asset(
@@ -78,7 +109,6 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: PageView(
                       physics: NeverScrollableScrollPhysics(),
-                   
                       controller: controller.pageController,
                       children: [
                         DashboardScreen(),

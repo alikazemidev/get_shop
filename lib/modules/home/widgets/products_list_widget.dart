@@ -9,7 +9,7 @@ import 'package:iconsax/iconsax.dart';
 
 class ProductsListWidget extends StatelessWidget {
   final String title;
-  final List<Product> products;
+  final List<Proudct> products;
   final Sort? sort;
   const ProductsListWidget({
     super.key,

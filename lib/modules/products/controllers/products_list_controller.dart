@@ -11,7 +11,7 @@ class ProductsListController extends GetxController {
 
   Sort? selectedSort;
   List<Category>? categories;
-  List<Product>? products;
+  List<Proudct>? products;
   TextEditingController inputController = TextEditingController();
   ProductRepository productRepository = ProductRepository();
   int? selectedCategoryId;

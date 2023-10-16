@@ -1,5 +1,6 @@
 import 'package:get_shop/backend/models/product.dart';
 import 'package:get_shop/backend/repositories/base_repository.dart';
+import 'package:get_shop/backend/response/cart_response.dart';
 import 'package:get_shop/backend/response/categories_response.dart';
 import 'package:get_shop/backend/response/dashboard_response.dart';
 import 'package:get_shop/backend/response/products_response.dart';
@@ -40,10 +41,10 @@ class ProductRepository extends BaseRepository {
     return ProductsResponse.fromJson(res.data);
   }
 
-  Future<Product> getProductDetails(int id) async {
+  Future<Proudct> getProductDetails(int id) async {
     var res = await dio.get('/products/$id');
 
-    return Product.fromJson(res.data['data']);
+    return Proudct.fromJson(res.data['data']);
   }
 
   Future<ReviewResponse> getReviews(int id) async {
@@ -70,7 +71,13 @@ class ProductRepository extends BaseRepository {
       'product_id': productId.toString(),
       'increment': increment,
     });
-    print(res.data);  
+    
     return res.data['count'] ?? 0;
+  }
+
+  Future<CartResponse> getCart() async {
+    var res = await dio.get('/cart');
+    print(res.data);
+    return CartResponse.fromJson(res.data);
   }
 }
