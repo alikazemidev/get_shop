@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:get_shop/backend/models/user.dart';
 import 'package:get_shop/backend/repositories/base_repository.dart';
 import 'package:get_shop/backend/response/address_response.dart';
+import 'package:get_shop/backend/response/products_response.dart';
 import 'package:get_shop/backend/response/province_response.dart';
 import 'package:get_shop/helpers/widgets/snack_widget.dart';
 import 'package:get_shop/modules/profile/controllers/profile_controller.dart';
@@ -83,5 +84,16 @@ class ProfileRepository extends BaseRepository {
   Future<bool> deleteAddress({required int id}) async {
     var res = await dio.delete('/address/$id');
     return res.statusCode == 200;
+  }
+
+  Future<bool> bookmarked({required int id}) async {
+    var res = await dio.post('/product/$id/bookmark');
+    return res.statusCode == 200;
+  }
+
+  Future<ProductsResponse> getBookmarks() async {
+    var res = await dio.get('/bookmarks');
+    print(res.data);
+    return ProductsResponse.fromJson(res.data);
   }
 }

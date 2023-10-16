@@ -9,8 +9,10 @@ class Product {
   String? category;
   List<String>? gallery;
   int? reviewsCount;
+  bool? bookmarked;
 
   Product({
+    this.bookmarked,
     this.reviewsCount,
     this.id,
     this.title,
@@ -32,6 +34,7 @@ class Product {
     discountPercent = json['discount_percent'] as int?;
     desc = json['description'];
     category = json['category'];
+    bookmarked = json['bookmarked'];
     if (json['gallery'] != null) {
       gallery = json["gallery"].cast<String>();
     }

@@ -13,6 +13,8 @@ class ProfileController extends GetxController {
     update();
   }
 
+ 
+
   @override
   void onInit() {
     getUserProfile();
