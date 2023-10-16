@@ -66,12 +66,15 @@ class ProductRepository extends BaseRepository {
   }
 
   Future<int> addToCart(
-      {required int productId, required bool increment}) async {
+      {required int productId,
+      required bool increment,
+      bool delete = false}) async {
     var res = await dio.post('/add-to-cart', data: {
       'product_id': productId.toString(),
       'increment': increment,
+      'delete': delete,
     });
-    
+
     return res.data['count'] ?? 0;
   }
 

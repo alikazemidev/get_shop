@@ -29,52 +29,55 @@ class HomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: Row(
                       children: [
-                        Stack(
-                          children: [
-                            Container(
-                              height: 45,
-                              width: 45,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  width: 2,
-                                  color: MyColors.dividreColor,
+                        GestureDetector(
+                          onTap: () =>controller.changePage(indexPage: 2),
+                          child: Stack(
+                            children: [
+                              Container(
+                                height: 45,
+                                width: 45,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    width: 2,
+                                    color: MyColors.dividreColor,
+                                  ),
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
-                                borderRadius: BorderRadius.circular(12),
+                                child: Icon(
+                                  Iconsax.bag_2,
+                                  color: Colors.black,
+                                  size: 24,
+                                ),
                               ),
-                              child: Icon(
-                                Iconsax.bag_2,
-                                color: Colors.black,
-                                size: 24,
-                              ),
-                            ),
-                            GetBuilder<CartController>(
-                                init: CartController(),
-                                builder: (controller) {
-                                  return controller.cartResponse == null
-                                      ? Container()
-                                      : Container(
-                                          height: 16,
-                                          width: 16,
-                                          decoration: BoxDecoration(
-                                              color: MyColors.darkRedColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(100)),
-                                          child: Center(
-                                            child: Text(
-                                              controller
-                                                  .cartResponse!.totalItems
-                                                  .toString(),
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
+                              GetBuilder<CartController>(
+                                  init: CartController(),
+                                  builder: (controller) {
+                                    return controller.cartResponse == null
+                                        ? Container()
+                                        : Container(
+                                            height: 16,
+                                            width: 16,
+                                            decoration: BoxDecoration(
+                                                color: MyColors.darkRedColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(100)),
+                                            child: Center(
+                                              child: Text(
+                                                controller
+                                                    .cartResponse!.totalItems
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                }),
-                          ],
+                                          );
+                                  }),
+                            ],
+                          ),
                         ),
                         Spacer(),
                         Image.asset(
