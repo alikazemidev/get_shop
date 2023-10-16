@@ -63,4 +63,14 @@ class ProductRepository extends BaseRepository {
     });
     return res.statusCode == 200;
   }
+
+  Future<int> addToCart(
+      {required int productId, required bool increment}) async {
+    var res = await dio.post('/add-to-cart', data: {
+      'product_id': productId.toString(),
+      'increment': increment,
+    });
+    print(res.data);  
+    return res.data['count'] ?? 0;
+  }
 }

@@ -34,6 +34,15 @@ class ProductDetailsController extends GetxController {
     }
   }
 
+  Future<void> addToCart({required bool increment}) async {
+    var res = await productRepository.addToCart(
+      productId: id,
+      increment: increment,
+    );
+    product!.cartCount = res;
+    update();
+  }
+
   @override
   void onInit() {
     getProductDetails();

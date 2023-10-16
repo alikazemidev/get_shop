@@ -249,10 +249,55 @@ class ProductsDetailsScreen extends StatelessWidget {
                             ]),
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                        child: ButtonPrimary(
-                          text: 'افزودن به سبد خرید',
-                          onPressed: () {},
-                        ),
+                        child: controller.product!.cartCount == 0
+                            ? ButtonPrimary(
+                                text: 'افزودن به سبد خرید',
+                                onPressed: () =>
+                                    controller.addToCart(increment: true),
+                              )
+                            : Container(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                width: double.infinity,
+                                height: 45,
+                                decoration: BoxDecoration(
+                                  color: MyColors.primaryColor,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        controller.addToCart(increment: true);
+                                      },
+                                      child: Icon(
+                                        Iconsax.add,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      controller.product!.cartCount.toString(),
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        controller.addToCart(increment: false);
+                                      },
+                                      child: Icon(
+                                        controller.product!.cartCount == 1
+                                            ? Iconsax.trash
+                                            : Iconsax.minus,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                       )
                     ],
                   ),

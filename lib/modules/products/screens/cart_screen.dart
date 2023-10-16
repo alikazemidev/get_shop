@@ -35,7 +35,7 @@ class _CartScreenState extends State<CartScreen>
           // list of product in cart
           Expanded(
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: 1,
               // controller.productsResponse!.productsData!.length,
               itemBuilder: (BuildContext context, int index) {
                 // var bookmarkProduct =
@@ -331,13 +331,13 @@ class _CartScreenState extends State<CartScreen>
               ),
             ],
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 10),
         //  order button
           ButtonPrimary(
             text: 'ثبت سفارش',
             onPressed: () {},
           ),
-           SizedBox(height: 10),
+           SizedBox(height: 5),
         ],
       ),
     );
