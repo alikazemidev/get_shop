@@ -6,6 +6,7 @@ import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/appbar_custom_widget.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
 import 'package:get_shop/modules/products/controllers/order_controller.dart';
+import 'package:get_shop/modules/products/widgets/raido_box_widget.dart';
 import 'package:get_shop/modules/profile/screens/add_address_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -26,6 +27,7 @@ class OrderScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // address box title
                         Text(
                           'آدرس خود را انتخاب کنید',
                           style: TextStyle(
@@ -34,6 +36,7 @@ class OrderScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 20),
+                        // list of address
                         Column(
                           children: List.generate(
                             controller.addressResponse!.addressData!.length,
@@ -145,11 +148,190 @@ class OrderScreen extends StatelessWidget {
                             },
                           ),
                         ),
+                        // add address button
                         ButtonPrimary(
                           hasBorder: true,
                           text: 'آفزودن آدرس',
                           onPressed: () => Get.to(AddAddressScreen()),
                         ),
+                        SizedBox(height: 25),
+                        // send method title
+                        Text(
+                          'شیوه ارسال را انتخاب کنید',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        // send method box
+                        SizedBox(height: 15),
+                        RadioBoxWidget(),
+                        SizedBox(height: 15),
+                        // price and discount perecent box
+                        Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0xff14489e).withOpacity(.15),
+                                    blurRadius: 3,
+                                    offset: Offset(0, 1),
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'هزینه ارسال :',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: MyColors.darkGreyColor,
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '10,000',
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          SizedBox(width: 5),
+                                          Text(
+                                            'تومان',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: MyColors.darkGreyColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'مبلغ :',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: MyColors.darkGreyColor,
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '20,000',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          SizedBox(width: 5),
+                                          Text('تومان',
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color:
+                                                      MyColors.darkGreyColor))
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'مبلغ تخفیف :',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: MyColors.darkGreyColor,
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '5,000',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: MyColors.darkGreyColor,
+                                            ),
+                                          ),
+                                          SizedBox(width: 5),
+                                          Text('تومان',
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color:
+                                                      MyColors.darkGreyColor))
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10.0),
+                                    child: Divider(),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.vertical(
+                                            bottom: Radius.circular(25))),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'مبلغ کل :',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: MyColors.darkGreyColor,
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '25,000',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                            SizedBox(width: 5),
+                                            Text('تومان',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color:
+                                                        MyColors.darkGreyColor))
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        //  order button
+                        ButtonPrimary(
+                          text: 'پرداخت آنلاین',
+                          onPressed: () => Get.to(OrderScreen()),
+                        ),
+                        SizedBox(height: 20),
                       ],
                     ),
                   ),
