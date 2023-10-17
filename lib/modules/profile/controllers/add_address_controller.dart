@@ -4,6 +4,7 @@ import 'package:get_shop/backend/models/address.dart';
 import 'package:get_shop/backend/repositories/profile_repository.dart';
 import 'package:get_shop/backend/response/province_response.dart';
 import 'package:get_shop/helpers/widgets/snack_widget.dart';
+import 'package:get_shop/modules/products/controllers/order_controller.dart';
 import 'package:get_shop/modules/profile/controllers/address_controller.dart';
 
 class AddAddressController extends GetxController {
@@ -76,7 +77,12 @@ class AddAddressController extends GetxController {
               latlong: selectedPosition,
               cityId: selectedCity!.id!);
           if (res) {
-            Get.find<AddressController>().getAddress();
+            if (Get.isRegistered<AddressController>()) {
+              Get.find<AddressController>().getAddress();
+            }
+            if (Get.isRegistered<OrderController>()) {
+              Get.find<OrderController>().getAddress();
+            }
             Get.back();
             successMessage('موفق', 'آدرس با موفقیت ویرایش شد');
           }
@@ -88,7 +94,12 @@ class AddAddressController extends GetxController {
               latlong: selectedPosition,
               cityId: selectedCity!.id!);
           if (res) {
-            Get.find<AddressController>().getAddress();
+            if (Get.isRegistered<AddressController>()) {
+              Get.find<AddressController>().getAddress();
+            }
+            if (Get.isRegistered<OrderController>()) {
+              Get.find<OrderController>().getAddress();
+            }
             Get.back();
             successMessage('موفق', 'آدرس با موفقیت ثبت شد');
           }

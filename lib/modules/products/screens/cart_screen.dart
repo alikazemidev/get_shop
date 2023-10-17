@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
 import 'package:get_shop/modules/products/controllers/cart_controller.dart';
+import 'package:get_shop/modules/products/screens/order_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class CartScreen extends StatefulWidget {
@@ -419,7 +420,7 @@ class _CartScreenState extends State<CartScreen>
                             //  order button
                             ButtonPrimary(
                               text: 'ثبت سفارش',
-                              onPressed: () {},
+                              onPressed: () => Get.to(OrderScreen()),
                             ),
                             SizedBox(height: 5),
                           ],
