@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
+import 'package:get_shop/helpers/widgets/snack_widget.dart';
 import 'package:get_shop/modules/home/screens/home_screen.dart';
 import 'package:get_shop/modules/products/controllers/cart_controller.dart';
-import 'package:iconsax/iconsax.dart';
 
 class OrderCompleteScreen extends StatelessWidget {
   final String type;
@@ -86,10 +86,15 @@ class OrderCompleteScreen extends StatelessWidget {
               ButtonPrimary(
                 text: 'رفتن به سفارشات',
                 onPressed: () {
-                  // if (Get.isRegistered<CartController>())
-                  //   Get.find<CartController>().getCart();
-                  // Get.offAll(HomeScreen());
-                  Get.to(HomeScreen());
+                  if (type == 'success') {
+                    if (Get.isRegistered<CartController>()) {
+                      Get.find<CartController>().getCart();
+                    }
+                    Get.offAll(HomeScreen());
+                  } else {
+                    errorMessage('خطا', 'خطایی رخ داده دوباره امتحان کنید');
+                    Get.off(HomeScreen());
+                  }
                 },
               ),
             ],

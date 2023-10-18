@@ -52,27 +52,31 @@ class HomeScreen extends StatelessWidget {
                               ),
                               GetBuilder<CartController>(
                                   init: CartController(),
-                                  builder: (controller) {
-                                    return controller
-                                                .cartResponse!.totalItems ==
-                                            0
+                                  builder: (cartController) {
+                                    return cartController.cartResponse == null
                                         ? Container()
-                                        : Container(
-                                            height: 16,
-                                            width: 16,
-                                            decoration: BoxDecoration(
-                                                color: MyColors.darkRedColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(100)),
-                                            child: Center(
-                                              child: Text(
-                                                controller
-                                                    .cartResponse!.totalItems
-                                                    .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.white,
+                                        : Visibility(
+                                            visible: cartController
+                                                    .cartResponse!.totalItems !=
+                                                0,
+                                            child: Container(
+                                              height: 16,
+                                              width: 16,
+                                              decoration: BoxDecoration(
+                                                  color: MyColors.darkRedColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100)),
+                                              child: Center(
+                                                child: Text(
+                                                  cartController
+                                                      .cartResponse!.totalItems
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
                                             ),

@@ -1,8 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+
 import 'package:iconsax/iconsax.dart';
 
 class HomeController extends GetxController {
+ 
+
   int currentIndex = 0;
   PageController pageController = PageController();
 
