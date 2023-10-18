@@ -229,21 +229,14 @@ class _CartScreenState extends State<CartScreen>
                                                     ),
                                                   ),
                                                   SizedBox(width: 8),
-                                                  // controller.isLoading
-                                                  //     ? SizedBox(
-                                                  //         width: 10,
-                                                  //         height: 10,
-                                                  //         child:
-                                                  //             CircularProgressIndicator(),
-                                                  //       ):
-                                                       Text(
-                                                          cart.count.toString(),
-                                                          style: TextStyle(
-                                                            fontSize: 18,
-                                                            color: MyColors
-                                                                .primaryColor,
-                                                          ),
-                                                        ),
+                                                  Text(
+                                                    cart.count.toString(),
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                      color:
+                                                          MyColors.primaryColor,
+                                                    ),
+                                                  ),
                                                   SizedBox(width: 8),
                                                   GestureDetector(
                                                     onTap: () {

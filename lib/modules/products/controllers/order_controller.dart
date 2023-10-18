@@ -1,11 +1,16 @@
 import 'package:get/get.dart';
+import 'package:get_shop/backend/models/address.dart';
 import 'package:get_shop/backend/repositories/profile_repository.dart';
 import 'package:get_shop/backend/response/address_response.dart';
 import 'package:get_shop/helpers/widgets/snack_widget.dart';
+import 'package:get_shop/modules/products/controllers/cart_controller.dart';
+import 'package:get_shop/modules/products/widgets/raido_box_widget.dart';
 
 class OrderController extends GetxController {
   ProfileRepository profileRepository = ProfileRepository();
   AddressResponse? addressResponse;
+  Address? selectedAddress;
+  ShippingMethod? selectedMethod;
 
   Future<void> getAddress() async {
     addressResponse = await profileRepository.getAddress();
@@ -23,6 +28,30 @@ class OrderController extends GetxController {
     } else {
       errorMessage('نا موفق', 'خطایی رخ داده است');
     }
+  }
+
+  void selectAddress(Address value) {
+    selectedAddress = value;
+    update();
+  }
+
+  void selectMethod(ShippingMethod method) {
+    selectedMethod = method;
+    update();
+  }
+
+  String getTotalPrice() {
+    var totalPrice = int.parse(Get.find<CartController>()
+        .cartResponse!
+        .totalPrice!
+        .replaceAll(',', ''));
+    int shippingPrice = 0;
+    if (selectedMethod != null) {
+      shippingPrice = int.parse(selectedMethod!.price.replaceAll(',', ''));
+    }
+
+    var result = (totalPrice + shippingPrice).toString() ;
+    return result; 
   }
 
   @override
