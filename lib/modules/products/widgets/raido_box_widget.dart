@@ -16,7 +16,6 @@ class _RadioBoxWidgetState extends State<RadioBoxWidget> {
       title: 'پست پیشتاز(ارسال سریع)',
       price: '20,000',
       value: 1,
-      isSelected: true,
     ),
     ShippingMethod(
       title: 'تیپاکس',
