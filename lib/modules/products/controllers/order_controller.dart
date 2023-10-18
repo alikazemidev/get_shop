@@ -1,12 +1,15 @@
 import 'package:get/get.dart';
 import 'package:get_shop/backend/models/address.dart';
+import 'package:get_shop/backend/repositories/product_repository.dart';
 import 'package:get_shop/backend/repositories/profile_repository.dart';
 import 'package:get_shop/backend/response/address_response.dart';
 import 'package:get_shop/helpers/widgets/snack_widget.dart';
 import 'package:get_shop/modules/products/controllers/cart_controller.dart';
+import 'package:get_shop/modules/products/screens/payment_screen.dart';
 import 'package:get_shop/modules/products/widgets/raido_box_widget.dart';
 
 class OrderController extends GetxController {
+  ProductRepository productRepository = ProductRepository();
   ProfileRepository profileRepository = ProfileRepository();
   AddressResponse? addressResponse;
   Address? selectedAddress;
@@ -50,8 +53,20 @@ class OrderController extends GetxController {
       shippingPrice = int.parse(selectedMethod!.price.replaceAll(',', ''));
     }
 
-    var result = (totalPrice + shippingPrice).toString() ;
-    return result; 
+    var result = (totalPrice + shippingPrice).toString();
+    return result;
+  }
+
+  Future<void> order() async {
+    if (selectedAddress != null && selectedMethod != null) {
+      var link = await productRepository.order(
+        addressId: selectedAddress!.id!,
+        shippingMethod: selectedMethod!.value,
+      );
+      Get.to(PaymentScreen(paylink: link,));
+    } else {
+      errorMessage('ناموفق', 'لطفا ادرس و شیوه ارسال را انتخاب کنید');
+    }
   }
 
   @override

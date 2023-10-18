@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         GestureDetector(
-                          onTap: () =>controller.changePage(indexPage: 2),
+                          onTap: () => controller.changePage(indexPage: 2),
                           child: Stack(
                             children: [
                               Container(
@@ -53,7 +53,9 @@ class HomeScreen extends StatelessWidget {
                               GetBuilder<CartController>(
                                   init: CartController(),
                                   builder: (controller) {
-                                    return controller.cartResponse == null
+                                    return controller
+                                                .cartResponse!.totalItems ==
+                                            0
                                         ? Container()
                                         : Container(
                                             height: 16,

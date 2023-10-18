@@ -344,7 +344,7 @@ class OrderScreen extends StatelessWidget {
                         //  order button
                         ButtonPrimary(
                           text: 'پرداخت آنلاین',
-                          onPressed: () => Get.to(OrderScreen()),
+                          onPressed: () => controller.order(),
                         ),
                         SizedBox(height: 20),
                       ],

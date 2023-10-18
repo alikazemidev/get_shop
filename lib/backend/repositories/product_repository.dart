@@ -83,4 +83,16 @@ class ProductRepository extends BaseRepository {
     print(res.data);
     return CartResponse.fromJson(res.data);
   }
+
+  Future<String> order({
+    required int addressId,
+    required int shippingMethod,
+  }) async {
+    var res = await dio.post('/order', data: {
+      'address_id': addressId.toString(),
+      'shipping_method': shippingMethod.toString(),
+    });
+    
+    return res.data['payment_link'];
+  }
 }
