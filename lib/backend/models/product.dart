@@ -1,4 +1,4 @@
-class Proudct {
+class Product {
   int? id;
   String? title;
   String? image;
@@ -11,8 +11,10 @@ class Proudct {
   int? reviewsCount;
   bool? bookmarked;
   int? cartCount;
+  int? count;
 
-  Proudct({
+  Product({
+    this.count,
     this.cartCount,
     this.bookmarked,
     this.reviewsCount,
@@ -27,9 +29,10 @@ class Proudct {
     this.gallery,
   });
 
-  Proudct.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     id = json['id'] as int?;
     title = json['title'] as String?;
+    count = json['count'];
     image = json['image'] as String?;
     price = json['price'] as String?;
     realPrice = json['real_price'] as String?;

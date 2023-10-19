@@ -3,6 +3,7 @@ import 'package:get_shop/backend/repositories/base_repository.dart';
 import 'package:get_shop/backend/response/cart_response.dart';
 import 'package:get_shop/backend/response/categories_response.dart';
 import 'package:get_shop/backend/response/dashboard_response.dart';
+import 'package:get_shop/backend/response/order_response.dart';
 import 'package:get_shop/backend/response/products_response.dart';
 import 'package:get_shop/backend/response/review_response.dart';
 
@@ -41,10 +42,10 @@ class ProductRepository extends BaseRepository {
     return ProductsResponse.fromJson(res.data);
   }
 
-  Future<Proudct> getProductDetails(int id) async {
+  Future<Product> getProductDetails(int id) async {
     var res = await dio.get('/products/$id');
 
-    return Proudct.fromJson(res.data['data']);
+    return Product.fromJson(res.data['data']);
   }
 
   Future<ReviewResponse> getReviews(int id) async {
@@ -80,7 +81,7 @@ class ProductRepository extends BaseRepository {
 
   Future<CartResponse> getCart() async {
     var res = await dio.get('/cart');
-    print(res.data);
+
     return CartResponse.fromJson(res.data);
   }
 
@@ -92,7 +93,13 @@ class ProductRepository extends BaseRepository {
       'address_id': addressId.toString(),
       'shipping_method': shippingMethod.toString(),
     });
-    
+
     return res.data['payment_link'];
+  }
+
+  Future<OrderResponse> getOrder() async {
+    var res = await dio.get('/order');
+    print(res.data);
+    return OrderResponse.fromJson(res.data);
   }
 }

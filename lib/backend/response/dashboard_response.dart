@@ -4,8 +4,8 @@ import 'package:get_shop/backend/models/product.dart';
 class DashboardResponse {
   List<String>? sliders;
   List<Category>? categories;
-  List<Proudct>? discountedProducts;
-  List<Proudct>? latestProducts;
+  List<Product>? discountedProducts;
+  List<Product>? latestProducts;
 
   DashboardResponse({
     this.sliders,
@@ -23,15 +23,15 @@ class DashboardResponse {
       });
     }
     if (json['discounted_products'] != null) {
-      discountedProducts = <Proudct>[];
+      discountedProducts = <Product>[];
       json['discounted_products'].forEach((v) {
-        discountedProducts!.add(new Proudct.fromJson(v));
+        discountedProducts!.add(new Product.fromJson(v));
       });
     }
     if (json['latest_products'] != null) {
-      latestProducts = <Proudct>[];
+      latestProducts = <Product>[];
       json['latest_products'].forEach((v) {
-        latestProducts!.add(new Proudct.fromJson(v));
+        latestProducts!.add(new Product.fromJson(v));
       });
     }
   }

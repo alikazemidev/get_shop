@@ -63,7 +63,9 @@ class OrderController extends GetxController {
         addressId: selectedAddress!.id!,
         shippingMethod: selectedMethod!.value,
       );
-      Get.to(PaymentScreen(paylink: link,));
+      Get.to(PaymentScreen(
+        paylink: link,
+      ));
     } else {
       errorMessage('ناموفق', 'لطفا ادرس و شیوه ارسال را انتخاب کنید');
     }

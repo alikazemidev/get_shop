@@ -42,14 +42,14 @@ class CartResponse {
 
 class ProductInCart {
   int? count;
-  Proudct? product;
+  Product? product;
 
   ProductInCart({this.count, this.product});
 
   ProductInCart.fromJson(Map<String, dynamic> json) {
     count = json['count'];
     product =
-        json['product'] != null ? new Proudct.fromJson(json['product']) : null;
+        json['product'] != null ? new Product.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {

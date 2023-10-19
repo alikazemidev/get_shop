@@ -27,7 +27,7 @@ class AddAddressScreen extends StatelessWidget {
                 getAppbar(title: address == null ? 'ثبت آدرس' : 'ویرایش آدرس'),
             body: controller.provinceResponse == null
                 ? Center(child: CircularProgressIndicator())
-                : SingleChildScrollView(
+                :  SingleChildScrollView(
                     padding: const EdgeInsets.all(20),
                     child: Form(
                       key: controller.formKey,

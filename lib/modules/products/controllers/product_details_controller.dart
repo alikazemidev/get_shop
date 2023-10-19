@@ -10,7 +10,7 @@ class ProductDetailsController extends GetxController {
   final int id;
   ProductRepository productRepository = ProductRepository();
   ProfileRepository profileRepository = ProfileRepository();
-  Proudct? product;
+  Product? product;
 
   ProductDetailsController({required this.id});
 

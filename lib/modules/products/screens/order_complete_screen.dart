@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
 import 'package:get_shop/helpers/widgets/button_primary.dart';
 import 'package:get_shop/helpers/widgets/snack_widget.dart';
-import 'package:get_shop/modules/home/screens/home_screen.dart';
 import 'package:get_shop/modules/products/controllers/cart_controller.dart';
+import 'package:get_shop/modules/products/screens/orders_list_screen.dart';
 
 class OrderCompleteScreen extends StatelessWidget {
   final String type;
@@ -90,10 +90,10 @@ class OrderCompleteScreen extends StatelessWidget {
                     if (Get.isRegistered<CartController>()) {
                       Get.find<CartController>().getCart();
                     }
-                    Get.offAll(HomeScreen());
+                    Get.off(OrdersListScreen());
                   } else {
                     errorMessage('خطا', 'خطایی رخ داده دوباره امتحان کنید');
-                    Get.off(HomeScreen());
+                    Get.off(OrdersListScreen());
                   }
                 },
               ),

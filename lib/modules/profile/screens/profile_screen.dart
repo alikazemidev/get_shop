@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
-import 'package:get_shop/modules/products/screens/order_screen.dart';
-import 'package:get_shop/modules/products/screens/orders_screen.dart';
-
+import 'package:get_shop/modules/products/screens/orders_list_screen.dart';
 import 'package:get_shop/modules/profile/controllers/profile_controller.dart';
 import 'package:get_shop/modules/profile/screens/address_screen.dart';
 import 'package:get_shop/modules/profile/screens/edit_profile_screen.dart';
@@ -25,7 +23,6 @@ class _ProfileScreenState extends State<ProfileScreen>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    
     return GetBuilder<ProfileController>(
         init: ProfileController(),
         builder: (controller) {
@@ -118,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ),
                       SizedBox(height: 10),
                       GestureDetector(
-                        onTap: ()=> Get.to(OrdersScreen()),
+                        onTap: () => Get.to(OrdersListScreen()),
                         child: IconButtonWidget(
                           icon: Iconsax.graph,
                           title: 'سفارشات',
