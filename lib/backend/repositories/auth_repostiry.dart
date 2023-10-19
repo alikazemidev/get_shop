@@ -38,7 +38,7 @@ class AuthRepository extends BaseRepository {
     });
 
     if (res.statusCode == 200) {
-      successMessage('موفق', 'ثبت نام با موفقیت انجام شد');
+      successMessage('موفق', 'ورود با موفقیت انجام شد');
     } else if (res.statusCode! >= 300) {
       errorMessage('ناموفق', res.data['message']);
       return null;

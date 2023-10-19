@@ -27,7 +27,7 @@ class AddAddressScreen extends StatelessWidget {
                 getAppbar(title: address == null ? 'ثبت آدرس' : 'ویرایش آدرس'),
             body: controller.provinceResponse == null
                 ? Center(child: CircularProgressIndicator())
-                :  SingleChildScrollView(
+                : SingleChildScrollView(
                     padding: const EdgeInsets.all(20),
                     child: Form(
                       key: controller.formKey,
@@ -46,6 +46,7 @@ class AddAddressScreen extends StatelessWidget {
                               Expanded(
                                 child: GestureDetector(
                                   onTap: () {
+                                    FocusScope.of(context).unfocus();
                                     showModalBottomSheet(
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.vertical(
@@ -107,6 +108,7 @@ class AddAddressScreen extends StatelessWidget {
                                 child: GestureDetector(
                                   onTap: () {
                                     if (controller.selectedProvince != null) {
+                                      FocusScope.of(context).unfocus();
                                       showModalBottomSheet(
                                         shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.vertical(
@@ -182,6 +184,7 @@ class AddAddressScreen extends StatelessWidget {
                           GestureDetector(
                             onTap: () => Get.to(MapScreen(
                               onSelected: (positon) {
+                                FocusScope.of(context).unfocus();
                                 controller.selectPosition(positon);
                               },
                             )),

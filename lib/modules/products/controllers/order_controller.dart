@@ -63,7 +63,7 @@ class OrderController extends GetxController {
         addressId: selectedAddress!.id!,
         shippingMethod: selectedMethod!.value,
       );
-      Get.to(PaymentScreen(
+      Get.off(PaymentScreen(
         paylink: link,
       ));
     } else {
