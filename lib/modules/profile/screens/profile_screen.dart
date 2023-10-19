@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_shop/constants/color.dart';
+import 'package:get_shop/modules/products/screens/order_screen.dart';
+import 'package:get_shop/modules/products/screens/orders_screen.dart';
 
 import 'package:get_shop/modules/profile/controllers/profile_controller.dart';
 import 'package:get_shop/modules/profile/screens/address_screen.dart';
@@ -115,9 +117,12 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ),
                       ),
                       SizedBox(height: 10),
-                      IconButtonWidget(
-                        icon: Iconsax.graph,
-                        title: 'سفارشات',
+                      GestureDetector(
+                        onTap: ()=> Get.to(OrdersScreen()),
+                        child: IconButtonWidget(
+                          icon: Iconsax.graph,
+                          title: 'سفارشات',
+                        ),
                       ),
                       SizedBox(height: 10),
                       GestureDetector(
