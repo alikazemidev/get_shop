@@ -8,7 +8,6 @@ import 'package:get_shop/helpers/widgets/snack_widget.dart';
 import 'package:get_shop/modules/products/controllers/cart_controller.dart';
 import 'package:get_shop/modules/products/screens/payment_screen.dart';
 import 'package:get_shop/modules/products/widgets/raido_box_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class OrderController extends GetxController {
