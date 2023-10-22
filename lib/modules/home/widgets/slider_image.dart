@@ -29,7 +29,7 @@ class _SliderImageState extends State<SliderImage> {
             },
             height: 140.0,
             viewportFraction: 1,
-            // autoPlay: true,
+            autoPlay: true,
             autoPlayInterval: Duration(
               seconds: 3,
             ),

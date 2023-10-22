@@ -18,7 +18,7 @@ class StartScreen extends StatelessWidget {
             children: [
               Spacer(),
               Image.asset(
-                'assets/images/logo.png',
+                'assets/logo.png',
                 height: 100,
               ),
               Spacer(),

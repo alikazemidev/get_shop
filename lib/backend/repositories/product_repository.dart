@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get_shop/backend/models/product.dart';
 import 'package:get_shop/backend/repositories/base_repository.dart';
 import 'package:get_shop/backend/response/cart_response.dart';
@@ -92,6 +93,7 @@ class ProductRepository extends BaseRepository {
     var res = await dio.post('/order', data: {
       'address_id': addressId.toString(),
       'shipping_method': shippingMethod.toString(),
+      'platform': kIsWeb ? 'web' : 'android',
     });
 
     return res.data['payment_link'];

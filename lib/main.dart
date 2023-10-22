@@ -17,21 +17,27 @@ class MyApp extends StatelessWidget {
     return GetBuilder<ThemeHelper>(
       init: ThemeHelper(),
       builder: (controller) {
-        return GetMaterialApp(
-          scrollBehavior: AppScrollBehavior(),
-          theme: controller.defultTheme,
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('fa', 'IR'),
-            Locale('en', 'US'),
-          ],
-          locale: const Locale('fa', 'IR'),
-          debugShowCheckedModeBanner: false,
-          home: const SplashScreen(),
+        return Center(
+          child: Container(
+            width: 600,
+            color: Colors.grey.shade300,
+            child: GetMaterialApp(
+              scrollBehavior: AppScrollBehavior(),
+              theme: controller.defultTheme,
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [
+                Locale('fa', 'IR'),
+                Locale('en', 'US'),
+              ],
+              locale: const Locale('fa', 'IR'),
+              debugShowCheckedModeBanner: false,
+              home: const SplashScreen(),
+            ),
+          ),
         );
       },
     );
@@ -47,4 +53,3 @@ class AppScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.trackpad,
       };
 }
-
